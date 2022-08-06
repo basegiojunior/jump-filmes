@@ -4,6 +4,11 @@
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
 
+    "strict": true,
+    "baseUrl": "./",
+    "paths": {
+      "src/*": ["src/*"]
+    },
     /* Completeness */
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   }
