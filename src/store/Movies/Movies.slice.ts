@@ -7,7 +7,7 @@ const initialState: MoviesState = {
 };
 
 export const SEARCH = () => ({
-  type: 'SEARCH',
+  type: ActionMovies.SEARCH,
   payload: new Promise(function (resolve) {
     setTimeout(
       () =>
