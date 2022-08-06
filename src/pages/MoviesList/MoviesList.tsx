@@ -1,11 +1,11 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import styles from './Home.style';
+import styles from './MoviesList.style';
 
-export const Home: React.FC = () => {
+export const MoviesList: React.FC = () => {
   return (
     <View style={styles.container}>
-      <Text>Home</Text>
+      <Text>MoviesList</Text>
     </View>
   );
 };
