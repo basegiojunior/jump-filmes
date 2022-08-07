@@ -1,4 +1,4 @@
-import { Movie } from 'src/models/movie';
+import { Movie } from 'src/types/movie';
 
 export enum ActionMovies {
   RESET_LIST = 'RESET_LIST',
@@ -8,7 +8,11 @@ export enum ActionMovies {
   SEARCH_FULFILLED = 'SEARCH_FULFILLED',
 }
 
-export interface MoviesState {
+export type MoviesState = {
   loading: boolean;
   movies: Array<Movie>;
-}
+};
+
+export type SearchMoviesProps = {
+  query: string;
+};

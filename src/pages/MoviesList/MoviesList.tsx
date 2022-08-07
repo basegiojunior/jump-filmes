@@ -16,7 +16,7 @@ export const MoviesList: React.FC = () => {
       <Button
         title="Search"
         onPress={() => {
-          dispatch(SEARCH());
+          dispatch(SEARCH({ query: 'batman' }));
         }}
       />
       <Button
@@ -29,7 +29,7 @@ export const MoviesList: React.FC = () => {
       <ActivityIndicator size="small" color="#000" animating={loading} />
 
       {movies.map(movie => (
-        <Text key={movie.id}>{movie.name}</Text>
+        <Text key={movie.ids.trakt}>{movie.title}</Text>
       ))}
     </View>
   );

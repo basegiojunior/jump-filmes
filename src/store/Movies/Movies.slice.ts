@@ -1,27 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { ActionMovies, MoviesState } from './Movies.types';
+import { searchMovies } from 'src/api/Movies/searchMovies';
+import { Media } from 'src/types/media';
+import { ActionMovies, MoviesState, SearchMoviesProps } from './Movies.types';
 
 const initialState: MoviesState = {
   loading: false,
   movies: [],
 };
-
-export const SEARCH = () => ({
-  type: ActionMovies.SEARCH,
-  payload: new Promise(function (resolve) {
-    setTimeout(
-      () =>
-        resolve({
-          data: [
-            { id: '1', name: 'Sobrenatural' },
-            { id: '2', name: 'Madagascar' },
-            { id: '3', name: 'Vingadores' },
-          ],
-        }),
-      3000,
-    );
-  }),
-});
 
 export const moviesSlice = createSlice({
   name: 'movies',
@@ -37,11 +22,24 @@ export const moviesSlice = createSlice({
     },
     [ActionMovies.SEARCH_FULFILLED]: (state, action) => {
       state.loading = false;
-      state.movies = action.payload.data;
+      state.movies = action.payload.map((media: Media) => media.movie);
     },
-    [ActionMovies.SEARCH_REJECTED]: state => {
+    [ActionMovies.SEARCH_REJECTED]: (state, action) => {
       state.loading = false;
+      console.log(action);
     },
+  },
+});
+
+export const SEARCH = ({ query }: SearchMoviesProps) => ({
+  type: ActionMovies.SEARCH,
+  payload: async function () {
+    try {
+      const response = await searchMovies({ query });
+      return response;
+    } catch (error) {
+      throw error;
+    }
   },
 });
 
