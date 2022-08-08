@@ -12,5 +12,6 @@
     /* Completeness */
     "skipLibCheck": true,                                 /* Skip type checking all .d.ts files. */
     "typeRoots": ["./src/types"],
+    "types": ["styled-components-react-native"]
   }
 }

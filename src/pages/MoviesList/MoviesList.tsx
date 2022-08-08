@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import { ActivityIndicator, Button, Text, View } from 'react-native';
+import { ActivityIndicator, Button, Text } from 'react-native';
 import { useAppDispatch, useAppSelector } from 'src/hooks/reduxHooks';
 import { SEARCH, RESET_LIST, GET_POSTER } from 'src/store/Movies/Movies.slice';
-import styles from './MoviesList.style';
+import * as S from './MoviesList.style';
 
 export const MoviesList: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -18,8 +18,10 @@ export const MoviesList: React.FC = () => {
   }, [movies.length]);
 
   return (
-    <View style={styles.container}>
-      <Text>MoviesList</Text>
+    <S.Container>
+      <S.Text100>MoviesList asdjlfkaj sldkfjlçakj sçdjfa çsd</S.Text100>
+      <S.Text80>MoviesList asdjlfkaj sldkfjlçakj sçdjfa çsd</S.Text80>
+      <S.Text60>MoviesList asdjlfkaj sldkfjlçakj sçdjfa çsd</S.Text60>
 
       <Button
         title="Search"
@@ -41,6 +43,6 @@ export const MoviesList: React.FC = () => {
           {movie.title} + {movie.posterLink}
         </Text>
       ))}
-    </View>
+    </S.Container>
   );
 };
