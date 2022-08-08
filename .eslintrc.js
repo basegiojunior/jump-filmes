@@ -15,6 +15,7 @@ module.exports = {
         'no-shadow': 'off',
         'no-undef': 'off',
         'import/no-unresolved': 'error',
+        'react-hooks/exhaustive-deps': 'off',
       },
     },
   ],
