@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getTmdbMoviePosterPathById } from 'src/api/tmdb/Movies/getMovieById/getMovieById';
 import { searchTraktMovies } from 'src/api/trakt/Movies/SearchMovies/searchMovies';
-import { IMAGE_BASE_URL } from 'src/api/trakt/urls';
+import { IMAGE_BASE_URL } from 'src/api/tmdb/urls';
 import { Media } from 'src/types/media';
 import {
   ActionMovies,
