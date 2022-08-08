@@ -1,11 +1,7 @@
 import React, { useEffect } from 'react';
 import { ActivityIndicator, Button, Text, View } from 'react-native';
 import { useAppDispatch, useAppSelector } from 'src/hooks/reduxHooks';
-import {
-  SEARCH,
-  RESET_LIST,
-  GET_IMDB_POSTER,
-} from 'src/store/Movies/Movies.slice';
+import { SEARCH, RESET_LIST, GET_POSTER } from 'src/store/Movies/Movies.slice';
 import styles from './MoviesList.style';
 
 export const MoviesList: React.FC = () => {
@@ -16,7 +12,7 @@ export const MoviesList: React.FC = () => {
   useEffect(() => {
     movies.forEach(movie => {
       if (movie.ids.tmdb && !movie.posterLink && !movie.posterError) {
-        dispatch(GET_IMDB_POSTER({ id: movie.ids.tmdb }));
+        dispatch(GET_POSTER({ id: movie.ids.tmdb }));
       }
     });
   }, [movies.length]);

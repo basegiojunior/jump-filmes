@@ -5,9 +5,9 @@ import { IMAGE_BASE_URL } from 'src/api/trakt/urls';
 import { Media } from 'src/types/media';
 import {
   ActionMovies,
-  GetTmdbPosterFulfilledPayloadAction,
-  GetTmdbPosterProps,
-  GetTmdbPosterReturn,
+  GetPosterFulfilledPayloadAction,
+  GetPosterProps,
+  GetPosterReturn,
   MoviesState,
   SearchFulfilledPayloadAction,
   SearchMoviesProps,
@@ -41,9 +41,9 @@ export const moviesSlice = createSlice({
     [ActionMovies.SEARCH_REJECTED]: state => {
       state.loading = false;
     },
-    [ActionMovies.GET_IMDB_POSTER_FULFILLED]: (
+    [ActionMovies.GET_POSTER_FULFILLED]: (
       state,
-      action: PayloadAction<GetTmdbPosterFulfilledPayloadAction>,
+      action: PayloadAction<GetPosterFulfilledPayloadAction>,
     ) => {
       state.movies.forEach(movie => {
         if (movie.ids.tmdb === action.payload.tmdbId) {
@@ -51,7 +51,7 @@ export const moviesSlice = createSlice({
         }
       });
     },
-    [ActionMovies.GET_IMDB_POSTER_REJECTED]: (state, action) => {
+    [ActionMovies.GET_POSTER_REJECTED]: (state, action) => {
       state.movies.forEach(movie => {
         if (movie.ids.tmdb === parseInt(action.payload, 10)) {
           movie.posterError = true;
@@ -74,16 +74,14 @@ export const SEARCH = ({ query }: SearchMoviesProps): SearchMoviesReturn => ({
   },
 });
 
-export const GET_IMDB_POSTER = ({
-  id,
-}: GetTmdbPosterProps): GetTmdbPosterReturn => ({
-  type: ActionMovies.GET_IMDB_POSTER,
+export const GET_POSTER = ({ id }: GetPosterProps): GetPosterReturn => ({
+  type: ActionMovies.GET_POSTER,
   payload: async function () {
     try {
-      const response = await getTmdbMoviePosterPathById({ id });
+      const posterPath = await getTmdbMoviePosterPathById({ id });
 
-      if (response) {
-        return { tmdbId: id, link: IMAGE_BASE_URL + response };
+      if (posterPath) {
+        return { tmdbId: id, link: IMAGE_BASE_URL + posterPath };
       }
 
       throw new Error(id.toString());
