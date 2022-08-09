@@ -1,5 +1,4 @@
 import { colors } from 'src/styles/colors';
-import { fontSizes } from 'src/styles/fonts';
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
@@ -7,15 +6,15 @@ export const Container = styled.View`
   background-color: ${colors.background};
 `;
 
-export const Text100 = styled.Text`
+export const Text1 = styled.Text`
   color: ${colors.onBackground};
-  font-size: ${fontSizes.default};
+  font-weight: 600;
 `;
-
-export const Text80 = styled.Text`
-  color: ${colors.onBackground80};
+export const Text2 = styled.Text`
+  color: ${colors.onBackground};
+  font-weight: 500;
 `;
-
-export const Text60 = styled.Text`
-  color: ${colors.onBackground60};
+export const Text3 = styled.Text`
+  color: ${colors.onBackground};
+  font-weight: 600;
 `;

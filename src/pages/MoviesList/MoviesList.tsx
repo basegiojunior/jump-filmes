@@ -1,13 +1,31 @@
 import React, { useEffect } from 'react';
-import { ActivityIndicator, Button, Text } from 'react-native';
+import { ActivityIndicator, TextInput } from 'react-native';
+import Header from 'src/components/Header';
+import Typography from 'src/components/Typography';
 import { useAppDispatch, useAppSelector } from 'src/hooks/reduxHooks';
-import { SEARCH, RESET_LIST, GET_POSTER } from 'src/store/Movies/Movies.slice';
+import { SEARCH, GET_POSTER } from 'src/store/Movies/Movies.slice';
+import HeaderSearchBar from './components/HeaderSearchBar';
 import * as S from './MoviesList.style';
 
 export const MoviesList: React.FC = () => {
   const dispatch = useAppDispatch();
   const movies = useAppSelector(state => state.movies);
   const loading = useAppSelector(state => state.loading);
+
+  const [search, setSearch] = React.useState('');
+  const inputRef = React.useRef<TextInput>(null);
+
+  function onPressSearch() {
+    dispatch(SEARCH({ query: search }));
+  }
+
+  function onPressManify() {
+    if (!search) {
+      inputRef?.current?.focus();
+    } else {
+      onPressSearch();
+    }
+  }
 
   useEffect(() => {
     movies.forEach(movie => {
@@ -19,29 +37,27 @@ export const MoviesList: React.FC = () => {
 
   return (
     <S.Container>
-      <S.Text100>MoviesList asdjlfkaj sldkfjlçakj sçdjfa çsd</S.Text100>
-      <S.Text80>MoviesList asdjlfkaj sldkfjlçakj sçdjfa çsd</S.Text80>
-      <S.Text60>MoviesList asdjlfkaj sldkfjlçakj sçdjfa çsd</S.Text60>
-
-      <Button
-        title="Search"
-        onPress={() => {
-          dispatch(SEARCH({ query: 'batman' }));
-        }}
-      />
-      <Button
-        title="Reset List"
-        onPress={() => {
-          dispatch(RESET_LIST());
-        }}
+      <Header
+        iconLeft="arrow-left"
+        iconRight="magnify"
+        onPressLeft={() => null}
+        onPressRight={onPressManify}
+        headerCenter={
+          <HeaderSearchBar
+            value={search}
+            onChangeText={setSearch}
+            onSubmitEditing={onPressSearch}
+            inputRef={inputRef}
+          />
+        }
       />
 
       <ActivityIndicator size="small" color="#000" animating={loading} />
 
       {movies.map(movie => (
-        <Text key={movie.ids.trakt}>
+        <Typography key={movie.ids.trakt}>
           {movie.title} + {movie.posterLink}
-        </Text>
+        </Typography>
       ))}
     </S.Container>
   );

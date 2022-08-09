@@ -11,11 +11,11 @@ const Stack = createNativeStackNavigator();
 const MainRoutes = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName={RoutesList.MoviesList}>
+      <Stack.Navigator initialRouteName={RoutesList.MovieDetails}>
         <Stack.Screen
           name={RoutesList.MoviesList}
           component={MoviesList}
-          options={{ title: 'MoviesList' }}
+          options={{ headerShown: false }}
         />
         <Stack.Screen
           name={RoutesList.MovieDetails}
