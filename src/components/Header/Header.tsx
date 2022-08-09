@@ -5,22 +5,19 @@ import IconButton from '../IconButton';
 import Typography from '../Typography';
 
 const Header = (props: HeaderProps) => {
-  const handleShowCenter = () => {
-    if (props.headertitle) {
-      return <Typography variant="h2">{props.headertitle}</Typography>;
-    }
-    if (props.headerCenter) {
-      return props.headerCenter;
-    }
-  };
-
   return (
     <S.Container>
       {props.iconLeft && (
         <IconButton onPress={props.onPressLeft} iconName={props.iconLeft} />
       )}
 
-      <S.CenterContainer>{handleShowCenter()}</S.CenterContainer>
+      <S.CenterContainer>
+        {props.headertitle ? (
+          <Typography variant="h2">{props.headertitle}</Typography>
+        ) : (
+          props.headerCenter
+        )}
+      </S.CenterContainer>
 
       {props.iconRight && (
         <IconButton onPress={props.onPressRight} iconName={props.iconRight} />
