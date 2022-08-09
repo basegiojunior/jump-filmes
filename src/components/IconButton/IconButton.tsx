@@ -8,9 +8,15 @@ export const IconButton: React.FC<IconButtonProps> = props => {
   return (
     <S.IconPressableContainer>
       <S.IconPressable
+        testID="icon-pressable"
         onPress={props.onPress}
         android_ripple={{ color: colors.ripple }}>
-        <Icon name={props.iconName} size={22} color={colors.onSurface} />
+        <Icon
+          testID="icon"
+          name={props.iconName}
+          size={22}
+          color={colors.onSurface}
+        />
       </S.IconPressable>
     </S.IconPressableContainer>
   );
