@@ -9,17 +9,26 @@ type CustomTextProps = {
 
 const textColorStyle: { [key in Variant]: string } = {
   text: colors.onBackground,
+  h1: colors.onBackground,
   h2: colors.onBackground,
+  h3: colors.onBackground,
+  label: colors.onSurfaceVariant,
 };
 
 const textWeightStyle: { [key in Variant]: number } = {
   text: 400,
+  h1: 600,
   h2: 600,
+  h3: 600,
+  label: 400,
 };
 
 const textSizeStyle: { [key in Variant]: string } = {
   text: '14px',
+  h1: '20px',
   h2: '18px',
+  h3: '16px',
+  label: '13px',
 };
 
 export const CustomText = styled.Text<CustomTextProps>`
