@@ -3,7 +3,7 @@ import 'react-native';
 import React from 'react';
 import { render, screen } from '@testing-library/react-native';
 
-import { Typography } from 'src/components/Typography/Typography';
+import Typography from 'src/components/Typography';
 
 describe('Typography', () => {
   test('Should render correctly', () => {

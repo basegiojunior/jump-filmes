@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { ActivityIndicator, TextInput } from 'react-native';
+import { ActivityIndicator, FlatList, TextInput } from 'react-native';
 import Header from 'src/components/Header';
-import Typography from 'src/components/Typography';
+import MediaListItem from 'src/components/MediaListItem';
 import { useAppDispatch, useAppSelector } from 'src/hooks/reduxHooks';
 import { SEARCH, GET_POSTER } from 'src/store/Movies/Movies.slice';
 import HeaderSearchBar from './components/HeaderSearchBar';
@@ -29,7 +29,7 @@ export const MediasList: React.FC = () => {
 
   useEffect(() => {
     movies.forEach(movie => {
-      if (movie.ids.tmdb && !movie.posterLink && !movie.posterError) {
+      if (movie.ids.tmdb && !movie.posterLink) {
         dispatch(GET_POSTER({ id: movie.ids.tmdb }));
       }
     });
@@ -52,13 +52,19 @@ export const MediasList: React.FC = () => {
         }
       />
 
-      <ActivityIndicator size="small" color="#000" animating={loading} />
-
-      {movies.map(movie => (
-        <Typography key={movie.ids.trakt}>
-          {movie.title} + {movie.posterLink}
-        </Typography>
-      ))}
+      <FlatList
+        data={movies}
+        ListHeaderComponent={
+          <ActivityIndicator size="small" color="#000" animating={loading} />
+        }
+        renderItem={({ item }) => (
+          <MediaListItem
+            key={item.ids.trakt}
+            title={item.title}
+            imageUri={item.posterLink}
+          />
+        )}
+      />
     </S.Container>
   );
 };

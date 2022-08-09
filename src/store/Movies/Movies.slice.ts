@@ -51,13 +51,6 @@ export const moviesSlice = createSlice({
         }
       });
     },
-    [ActionMovies.GET_POSTER_REJECTED]: (state, action) => {
-      state.movies.forEach(movie => {
-        if (movie.ids.tmdb === parseInt(action.payload, 10)) {
-          movie.posterError = true;
-        }
-      });
-    },
   },
 });
 
