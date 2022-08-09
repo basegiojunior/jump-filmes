@@ -30,7 +30,7 @@ export const MediasList: React.FC = () => {
   useEffect(() => {
     movies.forEach(movie => {
       if (movie.ids.tmdb && !movie.posterLink) {
-        dispatch(GET_POSTER({ id: movie.ids.tmdb }));
+        dispatch(GET_POSTER({ tmdbId: movie.ids.tmdb }));
       }
     });
   }, [movies.length]);
@@ -38,9 +38,7 @@ export const MediasList: React.FC = () => {
   return (
     <S.Container>
       <Header
-        iconLeft="arrow-left"
         iconRight="magnify"
-        onPressLeft={() => null}
         onPressRight={onPressManify}
         headerCenter={
           <HeaderSearchBar

@@ -15,6 +15,6 @@ export async function searchTraktMovies({
     );
     return response.data;
   } catch (error) {
-    throw new Error(`Error searching Trakt movies: ${error}`);
+    throw new Error(`Searching Trakt movies: ${error}`);
   }
 }

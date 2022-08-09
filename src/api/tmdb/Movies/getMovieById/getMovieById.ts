@@ -13,7 +13,7 @@ export async function getTmdbMovieById({
     });
     return response.data;
   } catch (error) {
-    throw new Error(`Error on get IMDB movie: ${error}`);
+    throw new Error(`get TMDB movie: ${error}`);
   }
 }
 
@@ -24,6 +24,6 @@ export async function getTmdbMoviePosterPathById({
     const response = await getTmdbMovieById({ id });
     return response.poster_path;
   } catch (error) {
-    throw new Error(`Error on get IMDB poster path movie: ${error}`);
+    throw new Error(`get TMDB poster path movie: ${error}`);
   }
 }

@@ -28,7 +28,7 @@ export type SearchMoviesReturn = {
 };
 
 export type GetPosterProps = {
-  id: number;
+  tmdbId: number;
 };
 export type GetPosterFulfilledPayloadAction = {
   tmdbId: number;

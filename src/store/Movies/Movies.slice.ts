@@ -67,19 +67,19 @@ export const SEARCH = ({ query }: SearchMoviesProps): SearchMoviesReturn => ({
   },
 });
 
-export const GET_POSTER = ({ id }: GetPosterProps): GetPosterReturn => ({
+export const GET_POSTER = ({ tmdbId }: GetPosterProps): GetPosterReturn => ({
   type: ActionMovies.GET_POSTER,
   payload: async function () {
     try {
-      const posterPath = await getTmdbMoviePosterPathById({ id });
+      const posterPath = await getTmdbMoviePosterPathById({ id: tmdbId });
 
       if (posterPath) {
-        return { tmdbId: id, link: IMAGE_BASE_URL + posterPath };
+        return { tmdbId, link: IMAGE_BASE_URL + posterPath };
       }
 
-      throw new Error(id.toString());
+      throw new Error(`GET_POSTER action - tmdbId: ${tmdbId.toString()}`);
     } catch (error) {
-      throw error;
+      throw new Error(`GET_POSTER action ${error}`);
     }
   },
 });
