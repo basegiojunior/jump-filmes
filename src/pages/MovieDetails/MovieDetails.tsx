@@ -9,7 +9,7 @@ export const MovieDetails: React.FC = () => {
   return (
     <View style={styles.container}>
       <Text>MovieDetails</Text>
-      <Button title="list" onPress={() => navigate(RoutesList.MoviesList)} />
+      <Button title="list" onPress={() => navigate(RoutesList.MediasList)} />
     </View>
   );
 };

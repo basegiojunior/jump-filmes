@@ -5,9 +5,9 @@ import Typography from 'src/components/Typography';
 import { useAppDispatch, useAppSelector } from 'src/hooks/reduxHooks';
 import { SEARCH, GET_POSTER } from 'src/store/Movies/Movies.slice';
 import HeaderSearchBar from './components/HeaderSearchBar';
-import * as S from './MoviesList.style';
+import * as S from './MediasList.style';
 
-export const MoviesList: React.FC = () => {
+export const MediasList: React.FC = () => {
   const dispatch = useAppDispatch();
   const movies = useAppSelector(state => state.movies);
   const loading = useAppSelector(state => state.loading);
