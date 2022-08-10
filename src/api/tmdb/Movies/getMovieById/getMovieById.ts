@@ -16,14 +16,3 @@ export async function getTmdbMovieById({
     throw new Error(`get TMDB movie: ${error}`);
   }
 }
-
-export async function getTmdbMoviePosterPathById({
-  id,
-}: GetTmdbMovieByIdProps): Promise<string | null | undefined> {
-  try {
-    const response = await getTmdbMovieById({ id });
-    return response.poster_path;
-  } catch (error) {
-    throw new Error(`get TMDB poster path movie: ${error}`);
-  }
-}

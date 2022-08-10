@@ -1,19 +1,30 @@
 import { colors } from 'src/styles/colors';
 import styled from 'styled-components/native';
 
-export const ImageContainer = styled.View`
+type ImageContainerProps = {
+  width: number;
+  height: number;
+  borderRadius?: number;
+};
+
+type ImageProps = {
+  width: number;
+  height: number;
+};
+
+export const ImageContainer = styled.View<ImageContainerProps>`
   background-color: ${colors.surfaceVariant};
-  border-radius: 5px;
+  border-radius: ${({ borderRadius = '0px' }) => borderRadius};
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  height: 114px;
-  width: 77px;
+  height: ${({ height }) => height};
+  width: ${({ width }) => width};
 `;
 
-export const Image = styled.Image`
-  height: 114px;
-  width: 77px;
+export const Image = styled.Image<ImageProps>`
+  height: ${({ height }) => height};
+  width: ${({ width }) => width};
 `;
 
 export const ActivityIndicator = styled.ActivityIndicator`

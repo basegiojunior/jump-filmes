@@ -4,4 +4,5 @@ export type GetTmdbMovieByIdProps = {
 
 export type TmdbMovieType = {
   poster_path?: string | null;
+  backdrop_path?: string | null;
 };

@@ -1,8 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
 import promise from 'redux-promise-middleware';
 import moviesReducer from './Movies/Movies.slice';
+import favoritesReducer from './Favorites/Favorites.slice';
 
 const persistConfig = {
   key: 'root',
@@ -10,7 +11,9 @@ const persistConfig = {
   storage: AsyncStorage,
 };
 
-const persistedReducer = persistReducer(persistConfig, moviesReducer);
+const rootReducer = combineReducers({ moviesReducer, favoritesReducer });
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
   reducer: persistedReducer,

@@ -14,10 +14,10 @@ export enum ActionMovies {
   SEARCH_PENDING = 'SEARCH_PENDING',
   SEARCH_REJECTED = 'SEARCH_REJECTED',
   SEARCH_FULFILLED = 'SEARCH_FULFILLED',
-  GET_POSTER = 'GET_POSTER',
-  GET_POSTER_PENDING = 'GET_POSTER_PENDING',
-  GET_POSTER_REJECTED = 'GET_POSTER_REJECTED',
-  GET_POSTER_FULFILLED = 'GET_POSTER_FULFILLED',
+  GET_IMAGES = 'GET_IMAGES',
+  GET_IMAGES_PENDING = 'GET_IMAGES_PENDING',
+  GET_IMAGES_REJECTED = 'GET_IMAGES_REJECTED',
+  GET_IMAGES_FULFILLED = 'GET_IMAGES_FULFILLED',
 }
 
 export type SearchMoviesProps = {
@@ -30,14 +30,15 @@ export type SearchMoviesReturn = {
   payload: () => Promise<SearchFulfilledPayloadAction>;
 };
 
-export type GetPosterProps = {
+export type GetImagesProps = {
   tmdbId: number;
 };
-export type GetPosterFulfilledPayloadAction = {
+export type GetImagesFulfilledPayloadAction = {
   tmdbId: number;
-  link: string;
+  posterLink: string;
+  backdropLink?: string | null;
 };
-export type GetPosterReturn = {
-  type: ActionMovies.GET_POSTER;
-  payload: () => Promise<GetPosterFulfilledPayloadAction>;
+export type GetImagesReturn = {
+  type: ActionMovies.GET_IMAGES;
+  payload: () => Promise<GetImagesFulfilledPayloadAction>;
 };

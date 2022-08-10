@@ -6,14 +6,14 @@ import Typography from '../Typography';
 
 const Header = (props: HeaderProps) => {
   return (
-    <S.Container>
+    <S.Container isTransparent={props.isTransparent}>
       {props.iconLeft && (
         <IconButton onPress={props.onPressLeft} iconName={props.iconLeft} />
       )}
 
       <S.CenterContainer>
         {props.headertitle ? (
-          <Typography variant="h2">{props.headertitle}</Typography>
+          <Typography variant="h4">{props.headertitle}</Typography>
         ) : (
           props.headerCenter
         )}

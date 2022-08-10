@@ -1,13 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { getTmdbMoviePosterPathById } from 'src/api/tmdb/Movies/getMovieById/getMovieById';
+import { getTmdbMovieById } from 'src/api/tmdb/Movies/getMovieById/getMovieById';
 import { searchTraktMovies } from 'src/api/trakt/Movies/SearchMovies/searchMovies';
 import { IMAGE_BASE_URL } from 'src/api/tmdb/urls';
 import { Media } from 'src/types/media';
 import {
   ActionMovies,
-  GetPosterFulfilledPayloadAction,
-  GetPosterProps,
-  GetPosterReturn,
+  GetImagesFulfilledPayloadAction,
+  GetImagesProps,
+  GetImagesReturn,
   MoviesState,
   SearchFulfilledPayloadAction,
   SearchMoviesProps,
@@ -45,7 +45,7 @@ export const moviesSlice = createSlice({
       state.loading = false;
       state.movies = [
         ...state.movies,
-        ...action.payload.map(media => media.movie),
+        ...action.payload.map(media => ({ ...media.movie, isFavorite: false })),
       ];
       state.page++;
 
@@ -56,13 +56,14 @@ export const moviesSlice = createSlice({
     [ActionMovies.SEARCH_REJECTED]: state => {
       state.loading = false;
     },
-    [ActionMovies.GET_POSTER_FULFILLED]: (
+    [ActionMovies.GET_IMAGES_FULFILLED]: (
       state,
-      action: PayloadAction<GetPosterFulfilledPayloadAction>,
+      action: PayloadAction<GetImagesFulfilledPayloadAction>,
     ) => {
       state.movies.forEach(movie => {
         if (movie.ids.tmdb === action.payload.tmdbId) {
-          movie.posterLink = action.payload.link;
+          movie.posterLink = action.payload.posterLink;
+          movie.backdropLink = action.payload.backdropLink;
         }
       });
     },
@@ -88,19 +89,21 @@ export const SEARCH = ({
   },
 });
 
-export const GET_POSTER = ({ tmdbId }: GetPosterProps): GetPosterReturn => ({
-  type: ActionMovies.GET_POSTER,
+export const GET_IMAGES = ({ tmdbId }: GetImagesProps): GetImagesReturn => ({
+  type: ActionMovies.GET_IMAGES,
   payload: async function () {
     try {
-      const posterPath = await getTmdbMoviePosterPathById({ id: tmdbId });
+      const { poster_path, backdrop_path } = await getTmdbMovieById({
+        id: tmdbId,
+      });
 
-      if (posterPath) {
-        return { tmdbId, link: IMAGE_BASE_URL + posterPath };
-      }
-
-      throw new Error(`GET_POSTER action - tmdbId: ${tmdbId.toString()}`);
+      return {
+        tmdbId,
+        posterLink: IMAGE_BASE_URL + poster_path,
+        backdropLink: IMAGE_BASE_URL + backdrop_path,
+      };
     } catch (error) {
-      throw new Error(`GET_POSTER action ${error}`);
+      throw new Error(`GET_IMAGES action ${error}`);
     }
   },
 });

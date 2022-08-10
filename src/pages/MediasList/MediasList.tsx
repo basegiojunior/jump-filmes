@@ -2,18 +2,29 @@ import React, { useEffect } from 'react';
 import { ActivityIndicator, FlatList, TextInput } from 'react-native';
 import Header from 'src/components/Header';
 import MediaListItem from 'src/components/MediaListItem';
+import { useFavoriteHooks } from 'src/hooks/favoriteHooks';
+import { useAppNavigation } from 'src/hooks/navigationHooks';
 import { useAppDispatch, useAppSelector } from 'src/hooks/reduxHooks';
-import { SEARCH, GET_POSTER, RESET_LIST } from 'src/store/Movies/Movies.slice';
+import { RoutesList } from 'src/routes/Routes.types';
+import { SEARCH, GET_IMAGES, RESET_LIST } from 'src/store/Movies/Movies.slice';
 import { colors } from 'src/styles/colors';
+import { Movie } from 'src/types/movie';
 import HeaderSearchBar from './components/HeaderSearchBar';
 import * as S from './MediasList.style';
 
 export const MediasList: React.FC = () => {
   const dispatch = useAppDispatch();
-  const movies = useAppSelector(state => state.movies);
-  const page = useAppSelector(state => state.page);
-  const finishedPages = useAppSelector(state => state.finishedPages);
-  const loading = useAppSelector(state => state.loading);
+  const movies = useAppSelector(({ moviesReducer }) => moviesReducer.movies);
+  const moviesFavorite = useAppSelector(
+    ({ favoritesReducer }) => favoritesReducer.movies,
+  );
+  const page = useAppSelector(({ moviesReducer }) => moviesReducer.page);
+  const finishedPages = useAppSelector(
+    ({ moviesReducer }) => moviesReducer.finishedPages,
+  );
+  const loading = useAppSelector(({ moviesReducer }) => moviesReducer.loading);
+  const { navigate } = useAppNavigation();
+  const { onPressFavorite } = useFavoriteHooks();
 
   const [search, setSearch] = React.useState('');
   const inputRef = React.useRef<TextInput>(null);
@@ -37,10 +48,20 @@ export const MediasList: React.FC = () => {
     }
   }
 
+  function onPressMedia(movie: Movie) {
+    navigate(RoutesList.MediaDetails, { movie });
+  }
+
+  useEffect(() => {
+    if (!movies.length) {
+      dispatch(SEARCH({ query: '' }));
+    }
+  }, []);
+
   useEffect(() => {
     movies.forEach(movie => {
       if (movie.ids.tmdb && !movie.posterLink) {
-        dispatch(GET_POSTER({ tmdbId: movie.ids.tmdb }));
+        dispatch(GET_IMAGES({ tmdbId: movie.ids.tmdb }));
       }
     });
   }, [movies.length]);
@@ -72,12 +93,18 @@ export const MediasList: React.FC = () => {
           </S.ActivityIndicatorContainer>
         }
         onRefresh={onSearch}
-        refreshing={loading}
+        refreshing={false}
         renderItem={({ item }) => (
           <MediaListItem
+            onPress={() => onPressMedia(item)}
+            onPressFavorite={() => onPressFavorite(item)}
             key={item.ids.trakt}
             title={item.title}
             imageUri={item.posterLink}
+            isFavorite={
+              moviesFavorite.filter(movie => movie.ids.trakt === item.ids.trakt)
+                .length === 1
+            }
           />
         )}
         onEndReached={onEndReached}
