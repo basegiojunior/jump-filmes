@@ -12,7 +12,10 @@ export const EmptyPage: React.FC<EmptyPageProps> = props => {
         Parece que não há nada aqui ainda
       </Typography>
       <S.TextContainer>
-        <Typography variant="text" color={colors.onSurfaceVariant}>
+        <Typography
+          testID="text-empty"
+          variant="text"
+          color={colors.onSurfaceVariant}>
           {props.text}
         </Typography>
       </S.TextContainer>
