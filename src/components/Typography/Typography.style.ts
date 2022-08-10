@@ -5,10 +5,12 @@ import { Variant } from './Typography.types';
 type CustomTextProps = {
   variant: Variant;
   test?: string;
+  bold?: boolean;
+  color?: string;
 };
 
 const textColorStyle: { [key in Variant]: string } = {
-  text: colors.onBackground,
+  text: colors.onSurface,
   h1: colors.onBackground,
   h2: colors.onBackground,
   h3: colors.onBackground,
@@ -28,7 +30,7 @@ const textWeightStyle: { [key in Variant]: number } = {
 };
 
 const textSizeStyle: { [key in Variant]: string } = {
-  text: '14px',
+  text: '16px',
   h1: '28px',
   h2: '26px',
   h3: '22px',
@@ -37,8 +39,21 @@ const textSizeStyle: { [key in Variant]: string } = {
   label: '13px',
 };
 
+const lineHeighttyle: { [key in Variant]: string } = {
+  text: '21px',
+  h1: '34px',
+  h2: '29px',
+  h3: '25px',
+  h4: '23px',
+  h5: '21px',
+  label: '13px',
+};
+
 export const CustomText = styled.Text<CustomTextProps>`
-  color: ${props => textColorStyle[props.variant]};
-  font-weight: ${props => textWeightStyle[props.variant]};
+  color: ${props => props.color || textColorStyle[props.variant]};
+  font-weight: ${props =>
+    props.bold ? 'bold' : textWeightStyle[props.variant]};
+  line-height: ${props => lineHeighttyle[props.variant]};
   font-size: ${props => textSizeStyle[props.variant]};
+  text-align: ${props => (props.variant === 'text' ? 'justify' : 'auto')};
 `;

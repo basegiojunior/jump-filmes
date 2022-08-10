@@ -9,6 +9,8 @@ export const Typography: React.FC<TypographyProps> = props => {
     <S.CustomText
       numberOfLines={props.numberOfLines}
       ellipsizeMode={props.ellipsizeMode}
+      bold={props.bold}
+      color={props.color}
       testID={props.testID || 'typography-text'}
       variant={variant}>
       {props.children}

@@ -11,6 +11,10 @@ export const MainInfo = styled.View`
   padding: 20px;
 `;
 
+export const ReadMorePressable = styled.Pressable`
+  margin-top: 8px;
+`;
+
 export const Row = styled.View`
   flex-direction: row;
 `;

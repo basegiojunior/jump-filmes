@@ -1,6 +1,7 @@
 export type Movie = {
   title: string;
   overview?: string | null;
+  tagline?: string | null;
   runtime?: number | null;
   trailer?: string | null;
   homepage?: string | null;
@@ -16,4 +17,12 @@ export type Movie = {
     imdb?: string | null;
     tmdb?: number | null;
   };
+  language?: string | null;
+  available_translations?: Array<string> | null;
+};
+
+export type MovieTranslation = {
+  title?: string;
+  overview?: string;
+  tagline?: string;
 };

@@ -3,6 +3,8 @@ export interface TypographyProps {
   variant?: Variant;
   numberOfLines?: number;
   ellipsizeMode?: 'head' | 'middle' | 'tail' | 'clip';
+  bold?: boolean;
+  color?: string;
   testID?: string;
 }
 
