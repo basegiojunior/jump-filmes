@@ -16,7 +16,7 @@ export const EmptyPage: React.FC<EmptyPageProps> = props => {
           {props.text}
         </Typography>
       </S.TextContainer>
-      <Icon name="emoticon-sad-outline" size={64} color={colors.primary} />
+      <Icon name="emoticon-wink-outline" size={64} color={colors.primary} />
     </S.Container>
   );
 };
