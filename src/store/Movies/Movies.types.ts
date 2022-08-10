@@ -4,6 +4,8 @@ import { Movie } from 'src/types/movie';
 export type MoviesState = {
   loading: boolean;
   movies: Array<Movie>;
+  page: number;
+  finishedPages: boolean;
 };
 
 export enum ActionMovies {
@@ -20,6 +22,7 @@ export enum ActionMovies {
 
 export type SearchMoviesProps = {
   query: string;
+  page?: number;
 };
 export type SearchFulfilledPayloadAction = Array<Media>;
 export type SearchMoviesReturn = {
@@ -28,7 +31,7 @@ export type SearchMoviesReturn = {
 };
 
 export type GetPosterProps = {
-  id: number;
+  tmdbId: number;
 };
 export type GetPosterFulfilledPayloadAction = {
   tmdbId: number;

@@ -1,0 +1,17 @@
+export const colors = {
+  background: '#121212',
+  onBackground: '#d1d1d1',
+  surface: '#1d1d1d',
+  surfaceVariant: '#242424',
+  onSurface: '#e7e7e7',
+  onSurfaceVariant: '#e7e7e7ab',
+  onSurfaceVariant2: '#e7e7e769',
+  primary: '#afc6ff',
+  onPrimary: '#002d6c',
+  secondary: '#ffb3ac',
+  onSecondary: '#680008',
+  tertiary: '#51dbcd',
+  onTertiary: '#003733',
+  outline: '#1f1f1f',
+  ripple: '#ffffff29',
+};

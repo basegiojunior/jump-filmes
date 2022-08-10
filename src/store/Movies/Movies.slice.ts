@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getTmdbMoviePosterPathById } from 'src/api/tmdb/Movies/getMovieById/getMovieById';
 import { searchTraktMovies } from 'src/api/trakt/Movies/SearchMovies/searchMovies';
-import { IMAGE_BASE_URL } from 'src/api/trakt/urls';
+import { IMAGE_BASE_URL } from 'src/api/tmdb/urls';
 import { Media } from 'src/types/media';
 import {
   ActionMovies,
@@ -14,9 +14,13 @@ import {
   SearchMoviesReturn,
 } from './Movies.types';
 
+const PAGE_ITEMS_LIMIT = 10;
+
 const initialState: MoviesState = {
   loading: false,
   movies: [],
+  page: 0,
+  finishedPages: false,
 };
 
 export const moviesSlice = createSlice({
@@ -25,6 +29,9 @@ export const moviesSlice = createSlice({
   reducers: {
     [ActionMovies.RESET_LIST]: state => {
       state.movies = [];
+      state.page = 0;
+      state.finishedPages = false;
+      state.loading = false;
     },
   },
   extraReducers: {
@@ -36,7 +43,15 @@ export const moviesSlice = createSlice({
       action: PayloadAction<SearchFulfilledPayloadAction>,
     ) => {
       state.loading = false;
-      state.movies = action.payload.map(media => media.movie);
+      state.movies = [
+        ...state.movies,
+        ...action.payload.map(media => media.movie),
+      ];
+      state.page++;
+
+      if (action.payload.length < PAGE_ITEMS_LIMIT) {
+        state.finishedPages = true;
+      }
     },
     [ActionMovies.SEARCH_REJECTED]: state => {
       state.loading = false;
@@ -51,21 +66,20 @@ export const moviesSlice = createSlice({
         }
       });
     },
-    [ActionMovies.GET_POSTER_REJECTED]: (state, action) => {
-      state.movies.forEach(movie => {
-        if (movie.ids.tmdb === parseInt(action.payload, 10)) {
-          movie.posterError = true;
-        }
-      });
-    },
   },
 });
 
-export const SEARCH = ({ query }: SearchMoviesProps): SearchMoviesReturn => ({
+export const SEARCH = ({
+  query,
+  page = 1,
+}: SearchMoviesProps): SearchMoviesReturn => ({
   type: ActionMovies.SEARCH,
   payload: async function () {
     try {
-      const responseMedias = (await searchTraktMovies({ query })) as Media[];
+      const responseMedias = (await searchTraktMovies({
+        query,
+        page,
+      })) as Media[];
 
       return responseMedias;
     } catch (error) {
@@ -74,19 +88,19 @@ export const SEARCH = ({ query }: SearchMoviesProps): SearchMoviesReturn => ({
   },
 });
 
-export const GET_POSTER = ({ id }: GetPosterProps): GetPosterReturn => ({
+export const GET_POSTER = ({ tmdbId }: GetPosterProps): GetPosterReturn => ({
   type: ActionMovies.GET_POSTER,
   payload: async function () {
     try {
-      const posterPath = await getTmdbMoviePosterPathById({ id });
+      const posterPath = await getTmdbMoviePosterPathById({ id: tmdbId });
 
       if (posterPath) {
-        return { tmdbId: id, link: IMAGE_BASE_URL + posterPath };
+        return { tmdbId, link: IMAGE_BASE_URL + posterPath };
       }
 
-      throw new Error(id.toString());
+      throw new Error(`GET_POSTER action - tmdbId: ${tmdbId.toString()}`);
     } catch (error) {
-      throw error;
+      throw new Error(`GET_POSTER action ${error}`);
     }
   },
 });

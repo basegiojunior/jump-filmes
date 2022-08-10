@@ -3,24 +3,24 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { RoutesList } from './Routes.types';
-import MovieDetails from 'src/pages/MovieDetails';
-import MoviesList from 'src/pages/MoviesList';
+import MediaDetails from 'src/pages/MediaDetails';
+import MediasList from 'src/pages/MediasList';
 
 const Stack = createNativeStackNavigator();
 
 const MainRoutes = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName={RoutesList.MoviesList}>
+      <Stack.Navigator initialRouteName={RoutesList.MediaDetails}>
         <Stack.Screen
-          name={RoutesList.MoviesList}
-          component={MoviesList}
-          options={{ title: 'MoviesList' }}
+          name={RoutesList.MediasList}
+          component={MediasList}
+          options={{ headerShown: false }}
         />
         <Stack.Screen
-          name={RoutesList.MovieDetails}
-          component={MovieDetails}
-          options={{ title: 'MovieDetails' }}
+          name={RoutesList.MediaDetails}
+          component={MediaDetails}
+          options={{ title: 'MediaDetails' }}
         />
       </Stack.Navigator>
     </NavigationContainer>

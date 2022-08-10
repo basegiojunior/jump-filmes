@@ -1,5 +1,7 @@
 export type SearchTraktMoviesProps = {
   query: string;
+  page?: number;
+  limit?: number;
 };
 
 export type TraktMedia = {
@@ -8,7 +10,11 @@ export type TraktMedia = {
   movie: {
     title: string;
     overview?: string | null;
-    year: number;
+    runtime?: number | null;
+    trailer?: string | null;
+    homepage?: string | null;
+    genres?: string[] | null;
+    year?: number | null;
     ids: {
       trakt: number;
       slug: string;

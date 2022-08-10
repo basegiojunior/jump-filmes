@@ -10,7 +10,7 @@
       "src/*": ["src/*"]
     },
     /* Completeness */
-    "skipLibCheck": true,                                 /* Skip type checking all .d.ts files. */
-    "typeRoots": ["./src/types"],
+    "skipLibCheck": true,
+    "types": ["jest", "styled-components-react-native"]
   }
 }

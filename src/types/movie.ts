@@ -1,10 +1,13 @@
 export type Movie = {
   title: string;
-  overview?: string;
-  year: number;
+  overview?: string | null;
+  runtime?: number | null;
+  trailer?: string | null;
+  homepage?: string | null;
+  genres?: string[] | null;
+  year?: number | null;
   emptyImage: boolean;
   posterLink?: string;
-  posterError?: boolean;
   ids: {
     trakt: number;
     slug: string;

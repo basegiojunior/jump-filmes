@@ -1,13 +1,13 @@
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 export enum RoutesList {
-  MoviesList = 'MoviesList',
-  MovieDetails = 'MovieDetails',
+  MediasList = 'MediasList',
+  MediaDetails = 'MediaDetails',
 }
 
 export type MainParamList = {
-  [RoutesList.MoviesList]: undefined;
-  [RoutesList.MovieDetails]: undefined;
+  [RoutesList.MediasList]: undefined;
+  [RoutesList.MediaDetails]: undefined;
 };
 
 export type MainNavigationProps = NativeStackNavigationProp<MainParamList>;
