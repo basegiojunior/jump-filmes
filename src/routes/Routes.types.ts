@@ -5,11 +5,13 @@ import { Movie } from 'src/types/movie';
 export enum RoutesList {
   MediasList = 'MediasList',
   MediaDetails = 'MediaDetails',
+  Favorites = 'Favorites',
 }
 
 export type MainParamList = {
   [RoutesList.MediasList]: undefined;
   [RoutesList.MediaDetails]: { movie: Movie };
+  [RoutesList.Favorites]: undefined;
 };
 
 export type MainNavigationProps = NativeStackNavigationProp<MainParamList>;

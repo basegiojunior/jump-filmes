@@ -45,7 +45,7 @@ export const moviesSlice = createSlice({
       state.loading = false;
       state.movies = [
         ...state.movies,
-        ...action.payload.map(media => media.movie),
+        ...action.payload.map(media => ({ ...media.movie, isFavorite: false })),
       ];
       state.page++;
 

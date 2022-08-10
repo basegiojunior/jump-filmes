@@ -110,6 +110,7 @@ export const MediaDetails: React.FC = () => {
             <Typography
               numberOfLines={readMoreExpanded ? undefined : 3}
               ellipsizeMode="tail"
+              textAlign="justify"
               variant="text">
               {movie?.overview}
             </Typography>

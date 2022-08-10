@@ -7,6 +7,7 @@ type CustomTextProps = {
   test?: string;
   bold?: boolean;
   color?: string;
+  textAlign?: string;
 };
 
 const textColorStyle: { [key in Variant]: string } = {
@@ -55,5 +56,5 @@ export const CustomText = styled.Text<CustomTextProps>`
     props.bold ? 'bold' : textWeightStyle[props.variant]};
   line-height: ${props => lineHeighttyle[props.variant]};
   font-size: ${props => textSizeStyle[props.variant]};
-  text-align: ${props => (props.variant === 'text' ? 'justify' : 'auto')};
+  text-align: ${props => props.textAlign || 'auto'};
 `;

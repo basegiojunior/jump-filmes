@@ -12,6 +12,7 @@ export const Typography: React.FC<TypographyProps> = props => {
       bold={props.bold}
       color={props.color}
       testID={props.testID || 'typography-text'}
+      textAlign={props.textAlign}
       variant={variant}>
       {props.children}
     </S.CustomText>
