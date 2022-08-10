@@ -26,7 +26,7 @@ const textWeightStyle: { [key in Variant]: number } = {
   h3: 600,
   h4: 600,
   h5: 600,
-  label: 400,
+  label: 600,
 };
 
 const textSizeStyle: { [key in Variant]: string } = {

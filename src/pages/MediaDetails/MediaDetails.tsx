@@ -2,9 +2,11 @@ import { useRoute } from '@react-navigation/native';
 import React, { useEffect } from 'react';
 import { ActivityIndicator, Dimensions } from 'react-native';
 import { getMovieTranslation } from 'src/api/trakt/Movies/getMovieTranslation/getMovieTranslation';
+import { getYoutubeThumbnailUrl } from 'src/api/youtube/urls';
 import Header from 'src/components/Header';
 import ImageHandle from 'src/components/ImageHandle';
 import Typography from 'src/components/Typography';
+import YoutubeLink from 'src/components/YoutubeLink';
 import { useAppNavigation } from 'src/hooks/navigationHooks';
 import { RootRouteProps, RoutesList } from 'src/routes/Routes.types';
 import { colors } from 'src/styles/colors';
@@ -49,8 +51,6 @@ export const MediaDetails: React.FC = () => {
     tagline: movieTranslation.tagline || params.movie.tagline,
   };
 
-  console.log('===', movieTranslation);
-
   async function getTranslation() {
     try {
       if (
@@ -62,10 +62,7 @@ export const MediaDetails: React.FC = () => {
           language: 'pt',
         });
 
-        console.log('translation: ', response[0]);
-
         if (response.length > 0) {
-          console.log('activated ===');
           setMovieTranslation(response[0] as MovieTranslation);
         }
       }
@@ -125,6 +122,18 @@ export const MediaDetails: React.FC = () => {
           </>
         )}
       </S.MainInfo>
+
+      {movie.trailer && (
+        <S.MainInfo>
+          <S.LabelContainer>
+            <Typography variant="label">TRAILER</Typography>
+          </S.LabelContainer>
+          <YoutubeLink
+            youtubeLink={movie.trailer}
+            thumbnailUri={getYoutubeThumbnailUrl(movie.trailer)}
+          />
+        </S.MainInfo>
+      )}
     </S.Container>
   );
 };
