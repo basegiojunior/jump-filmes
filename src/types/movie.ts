@@ -8,6 +8,7 @@ export type Movie = {
   year?: number | null;
   emptyImage: boolean;
   posterLink?: string;
+  backdropLink?: string | null;
   ids: {
     trakt: number;
     slug: string;

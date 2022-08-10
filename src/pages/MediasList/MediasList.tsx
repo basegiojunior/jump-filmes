@@ -3,7 +3,7 @@ import { ActivityIndicator, FlatList, TextInput } from 'react-native';
 import Header from 'src/components/Header';
 import MediaListItem from 'src/components/MediaListItem';
 import { useAppDispatch, useAppSelector } from 'src/hooks/reduxHooks';
-import { SEARCH, GET_POSTER, RESET_LIST } from 'src/store/Movies/Movies.slice';
+import { SEARCH, GET_IMAGES, RESET_LIST } from 'src/store/Movies/Movies.slice';
 import { colors } from 'src/styles/colors';
 import HeaderSearchBar from './components/HeaderSearchBar';
 import * as S from './MediasList.style';
@@ -40,7 +40,7 @@ export const MediasList: React.FC = () => {
   useEffect(() => {
     movies.forEach(movie => {
       if (movie.ids.tmdb && !movie.posterLink) {
-        dispatch(GET_POSTER({ tmdbId: movie.ids.tmdb }));
+        dispatch(GET_IMAGES({ tmdbId: movie.ids.tmdb }));
       }
     });
   }, [movies.length]);
