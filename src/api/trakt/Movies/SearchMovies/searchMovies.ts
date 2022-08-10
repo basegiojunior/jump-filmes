@@ -3,6 +3,8 @@ import { SearchTraktMoviesProps, TraktMedia } from './searchMovies.types';
 
 export async function searchTraktMovies({
   query,
+  page = 1,
+  limit = 10,
 }: SearchTraktMoviesProps): Promise<Array<TraktMedia>> {
   try {
     const response = await axiosTraktClient.get<Array<TraktMedia>>(
@@ -10,6 +12,8 @@ export async function searchTraktMovies({
       {
         params: {
           query,
+          page,
+          limit,
         },
       },
     );

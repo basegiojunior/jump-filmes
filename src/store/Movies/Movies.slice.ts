@@ -14,9 +14,13 @@ import {
   SearchMoviesReturn,
 } from './Movies.types';
 
+const PAGE_ITEMS_LIMIT = 10;
+
 const initialState: MoviesState = {
   loading: false,
   movies: [],
+  page: 0,
+  finishedPages: false,
 };
 
 export const moviesSlice = createSlice({
@@ -25,6 +29,9 @@ export const moviesSlice = createSlice({
   reducers: {
     [ActionMovies.RESET_LIST]: state => {
       state.movies = [];
+      state.page = 0;
+      state.finishedPages = false;
+      state.loading = false;
     },
   },
   extraReducers: {
@@ -36,7 +43,15 @@ export const moviesSlice = createSlice({
       action: PayloadAction<SearchFulfilledPayloadAction>,
     ) => {
       state.loading = false;
-      state.movies = action.payload.map(media => media.movie);
+      state.movies = [
+        ...state.movies,
+        ...action.payload.map(media => media.movie),
+      ];
+      state.page++;
+
+      if (action.payload.length < PAGE_ITEMS_LIMIT) {
+        state.finishedPages = true;
+      }
     },
     [ActionMovies.SEARCH_REJECTED]: state => {
       state.loading = false;
@@ -54,11 +69,17 @@ export const moviesSlice = createSlice({
   },
 });
 
-export const SEARCH = ({ query }: SearchMoviesProps): SearchMoviesReturn => ({
+export const SEARCH = ({
+  query,
+  page = 1,
+}: SearchMoviesProps): SearchMoviesReturn => ({
   type: ActionMovies.SEARCH,
   payload: async function () {
     try {
-      const responseMedias = (await searchTraktMovies({ query })) as Media[];
+      const responseMedias = (await searchTraktMovies({
+        query,
+        page,
+      })) as Media[];
 
       return responseMedias;
     } catch (error) {
