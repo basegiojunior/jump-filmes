@@ -1,3 +1,5 @@
 export interface ImageHandleProps {
-  imageUri?: string;
+  imageUri?: string | null;
+  width: string;
+  height: string;
 }

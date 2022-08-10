@@ -6,4 +6,4 @@ export interface TypographyProps {
   testID?: string;
 }
 
-export type Variant = 'text' | 'h1' | 'h2' | 'h3' | 'label';
+export type Variant = 'text' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'label';

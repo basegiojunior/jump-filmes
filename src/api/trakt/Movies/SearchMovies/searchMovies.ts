@@ -14,6 +14,7 @@ export async function searchTraktMovies({
           query,
           page,
           limit,
+          extended: 'full',
         },
       },
     );

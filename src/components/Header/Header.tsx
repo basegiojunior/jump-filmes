@@ -13,7 +13,7 @@ const Header = (props: HeaderProps) => {
 
       <S.CenterContainer>
         {props.headertitle ? (
-          <Typography variant="h2">{props.headertitle}</Typography>
+          <Typography variant="h4">{props.headertitle}</Typography>
         ) : (
           props.headerCenter
         )}

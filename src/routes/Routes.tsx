@@ -11,7 +11,7 @@ const Stack = createNativeStackNavigator();
 const MainRoutes = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName={RoutesList.MediaDetails}>
+      <Stack.Navigator initialRouteName={RoutesList.MediasList}>
         <Stack.Screen
           name={RoutesList.MediasList}
           component={MediasList}
@@ -20,7 +20,7 @@ const MainRoutes = () => {
         <Stack.Screen
           name={RoutesList.MediaDetails}
           component={MediaDetails}
-          options={{ title: 'MediaDetails' }}
+          options={{ headerShown: false }}
         />
       </Stack.Navigator>
     </NavigationContainer>

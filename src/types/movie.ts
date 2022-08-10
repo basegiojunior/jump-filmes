@@ -5,6 +5,7 @@ export type Movie = {
   trailer?: string | null;
   homepage?: string | null;
   genres?: string[] | null;
+  certification?: string | null;
   year?: number | null;
   emptyImage: boolean;
   posterLink?: string;

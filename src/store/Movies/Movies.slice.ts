@@ -93,14 +93,14 @@ export const GET_IMAGES = ({ tmdbId }: GetImagesProps): GetImagesReturn => ({
   type: ActionMovies.GET_IMAGES,
   payload: async function () {
     try {
-      const { poster_path, belongs_to_collection } = await getTmdbMovieById({
+      const { poster_path, backdrop_path } = await getTmdbMovieById({
         id: tmdbId,
       });
 
       return {
         tmdbId,
         posterLink: IMAGE_BASE_URL + poster_path,
-        backdropLink: IMAGE_BASE_URL + belongs_to_collection,
+        backdropLink: IMAGE_BASE_URL + backdrop_path,
       };
     } catch (error) {
       throw new Error(`GET_IMAGES action ${error}`);

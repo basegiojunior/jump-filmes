@@ -12,6 +12,8 @@ const textColorStyle: { [key in Variant]: string } = {
   h1: colors.onBackground,
   h2: colors.onBackground,
   h3: colors.onBackground,
+  h4: colors.onBackground,
+  h5: colors.onBackground,
   label: colors.onSurfaceVariant,
 };
 
@@ -20,14 +22,18 @@ const textWeightStyle: { [key in Variant]: number } = {
   h1: 600,
   h2: 600,
   h3: 600,
+  h4: 600,
+  h5: 600,
   label: 400,
 };
 
 const textSizeStyle: { [key in Variant]: string } = {
   text: '14px',
-  h1: '20px',
-  h2: '18px',
-  h3: '16px',
+  h1: '28px',
+  h2: '26px',
+  h3: '22px',
+  h4: '18px',
+  h5: '16px',
   label: '13px',
 };
 

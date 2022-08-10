@@ -10,16 +10,21 @@ export const ImageHandle: React.FC<ImageHandleProps> = props => {
 
   if (!props.imageUri || error) {
     return (
-      <S.ImageContainer testID="empty-image-icon">
+      <S.ImageContainer
+        width={props.width}
+        height={props.height}
+        testID="empty-image-icon">
         <Icon name="image-outline" size={24} color={colors.onSurfaceVariant2} />
       </S.ImageContainer>
     );
   }
 
   return (
-    <S.ImageContainer>
+    <S.ImageContainer width={props.width} height={props.height}>
       {loading && <S.ActivityIndicator color={colors.onSurfaceVariant} />}
       <S.Image
+        width={props.width}
+        height={props.height}
         onLoadEnd={() => setLoading(false)}
         source={{ uri: props.imageUri }}
         onError={() => setError(true)}
