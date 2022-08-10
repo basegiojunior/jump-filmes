@@ -18,7 +18,8 @@ export const MediasList: React.FC = () => {
   const [search, setSearch] = React.useState('');
   const inputRef = React.useRef<TextInput>(null);
 
-  function onPressSearch() {
+  function onSearch() {
+    dispatch(RESET_LIST());
     dispatch(SEARCH({ query: search }));
   }
 
@@ -28,16 +29,11 @@ export const MediasList: React.FC = () => {
     }
   }
 
-  function onRefresh() {
-    dispatch(RESET_LIST());
-    dispatch(SEARCH({ query: search }));
-  }
-
   function onPressManify() {
     if (!search) {
       inputRef?.current?.focus();
     } else {
-      onPressSearch();
+      onSearch();
     }
   }
 
@@ -58,7 +54,7 @@ export const MediasList: React.FC = () => {
           <HeaderSearchBar
             value={search}
             onChangeText={setSearch}
-            onSubmitEditing={onPressSearch}
+            onSubmitEditing={onSearch}
             inputRef={inputRef}
           />
         }
@@ -75,7 +71,7 @@ export const MediasList: React.FC = () => {
             />
           </S.ActivityIndicatorContainer>
         }
-        onRefresh={onRefresh}
+        onRefresh={onSearch}
         refreshing={loading}
         renderItem={({ item }) => (
           <MediaListItem
