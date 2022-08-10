@@ -1,10 +1,17 @@
 import { colors } from 'src/styles/colors';
 import styled from 'styled-components/native';
 
-export const Container = styled.View`
+type ContainerProps = {
+  isTransparent?: boolean;
+};
+
+export const Container = styled.View<ContainerProps>`
   width: 100%;
   height: 55px;
-  background-color: ${colors.surfaceVariant};
+  background-color: ${({ isTransparent }) =>
+    isTransparent ? 'transparent' : colors.surfaceVariant};
+  z-index: 1;
+  position: ${({ isTransparent }) => (isTransparent ? 'absolute' : 'relative')};
   flex-direction: row;
   align-items: center;
 `;

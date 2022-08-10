@@ -5,4 +5,5 @@ export interface HeaderProps {
   onPressRight?: () => void;
   headertitle?: string;
   headerCenter?: React.ReactNode;
+  isTransparent?: boolean;
 }

@@ -13,6 +13,7 @@ export const ImageHandle: React.FC<ImageHandleProps> = props => {
       <S.ImageContainer
         width={props.width}
         height={props.height}
+        borderRadius={props.borderRadius}
         testID="empty-image-icon">
         <Icon name="image-outline" size={24} color={colors.onSurfaceVariant2} />
       </S.ImageContainer>
@@ -20,7 +21,10 @@ export const ImageHandle: React.FC<ImageHandleProps> = props => {
   }
 
   return (
-    <S.ImageContainer width={props.width} height={props.height}>
+    <S.ImageContainer
+      width={props.width}
+      height={props.height}
+      borderRadius={props.borderRadius}>
       {loading && <S.ActivityIndicator color={colors.onSurfaceVariant} />}
       <S.Image
         width={props.width}

@@ -7,7 +7,12 @@ import ImageHandle from '../ImageHandle';
 export const MediaListItem: React.FC<MediaListItemProps> = props => {
   return (
     <S.Container onPress={props.onPress}>
-      <ImageHandle height="114px" width="77px" imageUri={props.imageUri} />
+      <ImageHandle
+        height="114px"
+        width="77px"
+        borderRadius="5px"
+        imageUri={props.imageUri}
+      />
       <S.Content>
         <Typography
           testID="title"

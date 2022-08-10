@@ -42,7 +42,7 @@ export const MediaDetails: React.FC = () => {
 
   return (
     <S.Container>
-      <Header iconLeft="arrow-left" onPressLeft={goBack} />
+      <Header isTransparent={true} iconLeft="arrow-left" onPressLeft={goBack} />
 
       <ImageHandle
         imageUri={movie?.backdropLink}

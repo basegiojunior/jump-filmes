@@ -1,16 +1,25 @@
 import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { RoutesList } from './Routes.types';
 import MediaDetails from 'src/pages/MediaDetails';
 import MediasList from 'src/pages/MediasList';
+import { colors } from 'src/styles/colors';
+
+const MyTheme: typeof DefaultTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: colors.background,
+  },
+};
 
 const Stack = createNativeStackNavigator();
 
 const MainRoutes = () => {
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={MyTheme}>
       <Stack.Navigator initialRouteName={RoutesList.MediasList}>
         <Stack.Screen
           name={RoutesList.MediasList}

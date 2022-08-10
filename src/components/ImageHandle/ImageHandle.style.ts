@@ -1,14 +1,20 @@
 import { colors } from 'src/styles/colors';
 import styled from 'styled-components/native';
 
+type ImageContainerProps = {
+  width: number;
+  height: number;
+  borderRadius?: number;
+};
+
 type ImageProps = {
   width: number;
   height: number;
 };
 
-export const ImageContainer = styled.View<ImageProps>`
+export const ImageContainer = styled.View<ImageContainerProps>`
   background-color: ${colors.surfaceVariant};
-  border-radius: 5px;
+  border-radius: ${({ borderRadius = '0px' }) => borderRadius};
   align-items: center;
   justify-content: center;
   overflow: hidden;
