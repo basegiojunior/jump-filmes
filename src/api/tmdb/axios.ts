@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { TMDB_BASE_URL } from './urls';
 
 export const axiosTmdbClient = axios.create({
-  baseURL: 'https://api.themoviedb.org/3/',
+  baseURL: TMDB_BASE_URL,
   timeout: 5000,
 });

@@ -1,4 +1,5 @@
 import { axiosTraktClient } from 'src/api/trakt/axios';
+import { TRAKT_URLS } from '../../urls';
 import {
   GetMovieTranslationProps,
   TraktMovieTranslation,
@@ -10,7 +11,7 @@ export async function getMovieTranslation({
 }: GetMovieTranslationProps): Promise<Array<TraktMovieTranslation>> {
   try {
     const response = await axiosTraktClient.get<Array<TraktMovieTranslation>>(
-      `movies/${id}/translations/${language}`,
+      TRAKT_URLS.GET_MOVIE_TRANSLATION(id, language || 'pt'),
     );
     return response.data;
   } catch (error) {

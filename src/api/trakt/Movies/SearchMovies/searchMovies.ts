@@ -1,4 +1,5 @@
 import { axiosTraktClient } from 'src/api/trakt/axios';
+import { TRAKT_URLS } from '../../urls';
 import { SearchTraktMoviesProps, TraktMedia } from './searchMovies.types';
 
 export async function searchTraktMovies({
@@ -8,7 +9,7 @@ export async function searchTraktMovies({
 }: SearchTraktMoviesProps): Promise<Array<TraktMedia>> {
   try {
     const response = await axiosTraktClient.get<Array<TraktMedia>>(
-      'search/movie',
+      TRAKT_URLS.SEARCH_MOVIE,
       {
         params: {
           query,
