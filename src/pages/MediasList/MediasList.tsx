@@ -93,7 +93,7 @@ export const MediasList: React.FC = () => {
           </S.ActivityIndicatorContainer>
         }
         onRefresh={onSearch}
-        refreshing={false}
+        refreshing={loading && movies.length === 0}
         renderItem={({ item }) => (
           <MediaListItem
             onPress={() => onPressMedia(item)}
