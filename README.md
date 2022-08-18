@@ -1,6 +1,6 @@
 # Jump Filmes
 
-Mobile app to search and list movies
+Mobile app to search and list movies (tested on Android only)
 
 <p align=center>
 <img src="https://user-images.githubusercontent.com/39566485/185141068-fd988dfb-dfdb-4e34-846e-a220266d0d2f.png" height="400">
