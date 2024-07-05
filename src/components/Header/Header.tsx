@@ -1,28 +1,31 @@
 import React from 'react';
-import { HeaderProps } from './Header.types';
-import * as S from './Header.style';
 import IconButton from '../IconButton';
 import Typography from '../Typography';
+import { HeaderProps } from './Header.types';
+import { stylesCreator } from './Header.style';
+import { View } from 'react-native';
 
 const Header = (props: HeaderProps) => {
+  const styles = stylesCreator({ isTransparent: props.isTransparent });
+
   return (
-    <S.Container isTransparent={props.isTransparent}>
+    <View style={styles.container}>
       {props.iconLeft && (
         <IconButton onPress={props.onPressLeft} iconName={props.iconLeft} />
       )}
 
-      <S.CenterContainer>
+      <View style={styles.centerContainer}>
         {props.headertitle ? (
           <Typography variant="h4">{props.headertitle}</Typography>
         ) : (
           props.headerCenter
         )}
-      </S.CenterContainer>
+      </View>
 
       {props.iconRight && (
         <IconButton onPress={props.onPressRight} iconName={props.iconRight} />
       )}
-    </S.Container>
+    </View>
   );
 };
 

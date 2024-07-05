@@ -1,13 +1,14 @@
-import styled from 'styled-components/native';
+import { StyleSheet } from 'react-native';
 
-export const Container = styled.View`
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-  padding: 40px;
-`;
-
-export const TextContainer = styled.View`
-  margin-top: 15px;
-  margin-bottom: 20px;
-`;
+export const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 40,
+  },
+  textContainer: {
+    marginTop: 15,
+    marginBottom: 20,
+  },
+});

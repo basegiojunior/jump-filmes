@@ -1,7 +1,8 @@
 module.exports = {
   root: true,
   extends: [
-    '@react-native-community',
+    'eslint:recommended',
+    '@react-native',
     'plugin:import/recommended',
     'plugin:import/typescript',
   ],
@@ -16,6 +17,12 @@ module.exports = {
         'no-undef': 'off',
         'import/no-unresolved': 'error',
         'react-hooks/exhaustive-deps': 'off',
+        'linebrake-style': 'auto',
+        'sort-imports': [
+          'error',
+          { ignoreCase: true, ignoreDeclarationSort: true },
+        ],
+        'import/order': ['error'],
       },
     },
   ],

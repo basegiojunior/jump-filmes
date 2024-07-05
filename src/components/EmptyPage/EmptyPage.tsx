@@ -1,25 +1,29 @@
-import React from 'react';
 import { EmptyPageProps } from './EmptyPage.types';
-import * as S from './EmptyPage.style';
 import Typography from '../Typography';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { colors } from 'src/styles/colors';
 
+import { styles } from './EmptyPage.style';
+
+import { View } from 'react-native';
+
+import React from 'react';
+
 export const EmptyPage: React.FC<EmptyPageProps> = props => {
   return (
-    <S.Container>
+    <View style={styles.container}>
       <Typography variant="h2" textAlign="center">
         Parece que não há nada aqui ainda
       </Typography>
-      <S.TextContainer>
+      <View style={styles.textContainer}>
         <Typography
           testID="text-empty"
           variant="text"
           color={colors.onSurfaceVariant}>
           {props.text}
         </Typography>
-      </S.TextContainer>
+      </View>
       <Icon name="emoticon-wink-outline" size={64} color={colors.primary} />
-    </S.Container>
+    </View>
   );
 };
