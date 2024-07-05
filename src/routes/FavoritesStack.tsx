@@ -1,9 +1,11 @@
 import React from 'react';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import MediaDetails from 'src/pages/MediaDetails';
-import { RoutesList } from './Routes.types';
+
 import FavoritesMedias from 'src/pages/FavoritesMedias';
+import MediaDetails from 'src/pages/MediaDetails';
+
+import { RoutesList } from './Routes.types';
 
 const Stack = createNativeStackNavigator();
 

@@ -1,11 +1,13 @@
 import * as React from 'react';
-import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
+
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import { colors } from 'src/styles/colors';
-import { MoviesStack } from './MoviesStack';
+
 import { FavoritesStack } from './FavoritesStack';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { MoviesStack } from './MoviesStack';
 
 const MyTheme: typeof DefaultTheme = {
   ...DefaultTheme,

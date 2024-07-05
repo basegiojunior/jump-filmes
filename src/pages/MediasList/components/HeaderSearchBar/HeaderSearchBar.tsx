@@ -1,11 +1,15 @@
 import React from 'react';
-import { HeaderSearchBarProps } from './HeaderSearchBar.types';
-import * as S from './HeaderSearchBar.style';
+import { TextInput } from 'react-native';
+
 import { colors } from 'src/styles/colors';
+
+import { styles } from './HeaderSearchBar.style';
+import { HeaderSearchBarProps } from './HeaderSearchBar.types';
 
 export const HeaderSearchBar: React.FC<HeaderSearchBarProps> = props => {
   return (
-    <S.Input
+    <TextInput
+      style={styles.input}
       value={props.value}
       onChangeText={props.onChangeText}
       placeholder="Buscar filme"

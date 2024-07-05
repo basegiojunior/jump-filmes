@@ -1,6 +1,7 @@
 import { axiosTraktClient } from 'src/api/trakt/axios';
-import { TRAKT_URLS } from '../../urls';
+
 import { SearchTraktMoviesProps, TraktMedia } from './searchMovies.types';
+import { TRAKT_URLS } from '../../urls';
 
 export async function searchTraktMovies({
   query,

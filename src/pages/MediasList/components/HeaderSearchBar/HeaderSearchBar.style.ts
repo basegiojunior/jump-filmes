@@ -1,8 +1,11 @@
-import { colors } from 'src/styles/colors';
-import styled from 'styled-components/native';
+import { StyleSheet } from 'react-native';
 
-export const Input = styled.TextInput`
-  font-size: 18px;
-  width: 100%;
-  color: ${colors.onSurface};
-`;
+import { colors } from 'src/styles/colors';
+
+export const styles = StyleSheet.create({
+  input: {
+    fontSize: 18,
+    width: '100%',
+    color: colors.onSurface,
+  },
+});

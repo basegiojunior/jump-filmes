@@ -1,16 +1,18 @@
 import React, { useEffect } from 'react';
-import { ActivityIndicator, FlatList, TextInput } from 'react-native';
+import { ActivityIndicator, FlatList, TextInput, View } from 'react-native';
+
 import Header from 'src/components/Header';
 import MediaListItem from 'src/components/MediaListItem';
 import { useFavoriteHooks } from 'src/hooks/favoriteHooks';
 import { useAppNavigation } from 'src/hooks/navigationHooks';
 import { useAppDispatch, useAppSelector } from 'src/hooks/reduxHooks';
 import { RoutesList } from 'src/routes/Routes.types';
-import { SEARCH, GET_IMAGES, RESET_LIST } from 'src/store/Movies/Movies.slice';
+import { GET_IMAGES, RESET_LIST, SEARCH } from 'src/store/Movies/Movies.slice';
 import { colors } from 'src/styles/colors';
 import { Movie } from 'src/types/movie';
+
 import HeaderSearchBar from './components/HeaderSearchBar';
-import * as S from './MediasList.style';
+import { styles } from './MediasList.style';
 
 export const MediasList: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -67,7 +69,7 @@ export const MediasList: React.FC = () => {
   }, [movies.length]);
 
   return (
-    <S.Container>
+    <View style={styles.container}>
       <Header
         iconRight="magnify"
         onPressRight={onPressManify}
@@ -84,13 +86,13 @@ export const MediasList: React.FC = () => {
       <FlatList
         data={movies}
         ListFooterComponent={
-          <S.ActivityIndicatorContainer>
+          <View style={styles.activityIndicatorContainer}>
             <ActivityIndicator
               size="large"
               color={colors.onBackground}
               animating={loading && movies.length > 0}
             />
-          </S.ActivityIndicatorContainer>
+          </View>
         }
         onRefresh={onSearch}
         refreshing={loading && movies.length === 0}
@@ -109,6 +111,6 @@ export const MediasList: React.FC = () => {
         )}
         onEndReached={onEndReached}
       />
-    </S.Container>
+    </View>
   );
 };

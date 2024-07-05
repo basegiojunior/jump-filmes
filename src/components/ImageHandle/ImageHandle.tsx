@@ -1,38 +1,45 @@
 import React from 'react';
-import { ImageHandleProps } from './ImageHandle.types';
-import * as S from './ImageHandle.style';
+import { ActivityIndicator, Image, View } from 'react-native';
+
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
 import { colors } from 'src/styles/colors';
+
+import { stylesCreator } from './ImageHandle.style';
+import { ImageHandleProps } from './ImageHandle.types';
 
 export const ImageHandle: React.FC<ImageHandleProps> = props => {
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState(false);
 
+  const styles = stylesCreator({
+    width: props.width,
+    height: props.height,
+    borderRadius: props.borderRadius,
+  });
+
   if (!props.imageUri || error) {
     return (
-      <S.ImageContainer
-        width={props.width}
-        height={props.height}
-        borderRadius={props.borderRadius}
-        testID="empty-image-icon">
+      <View style={styles.imageContainer} testID="empty-image-icon">
         <Icon name="image-outline" size={24} color={colors.onSurfaceVariant2} />
-      </S.ImageContainer>
+      </View>
     );
   }
 
   return (
-    <S.ImageContainer
-      width={props.width}
-      height={props.height}
-      borderRadius={props.borderRadius}>
-      {loading && <S.ActivityIndicator color={colors.onSurfaceVariant} />}
-      <S.Image
-        width={props.width}
-        height={props.height}
+    <View style={styles.imageContainer}>
+      {loading && (
+        <ActivityIndicator
+          style={styles.activityIndicator}
+          color={colors.onSurfaceVariant}
+        />
+      )}
+      <Image
+        style={styles.image}
         onLoadEnd={() => setLoading(false)}
         source={{ uri: props.imageUri }}
         onError={() => setError(true)}
       />
-    </S.ImageContainer>
+    </View>
   );
 };

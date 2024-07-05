@@ -1,7 +1,8 @@
+import React from 'react';
 import { Text } from 'react-native';
 
-import React from 'react';
 import { render, screen } from '@testing-library/react-native';
+
 import Header from 'src/components/Header';
 
 jest.mock('react-native-vector-icons/MaterialCommunityIcons', () => 'Icon');

@@ -1,5 +1,6 @@
 import React from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, View } from 'react-native';
+
 import EmptyPage from 'src/components/EmptyPage';
 import Header from 'src/components/Header';
 import MediaListItem from 'src/components/MediaListItem';
@@ -7,9 +8,9 @@ import { useFavoriteHooks } from 'src/hooks/favoriteHooks';
 import { useAppNavigation } from 'src/hooks/navigationHooks';
 import { useAppSelector } from 'src/hooks/reduxHooks';
 import { RoutesList } from 'src/routes/Routes.types';
-
 import { Movie } from 'src/types/movie';
-import * as S from './FavoritesMedias.style';
+
+import { styles } from './FavoritesMedias.style';
 
 export const FavoritesMedias: React.FC = () => {
   const { onPressFavorite } = useFavoriteHooks();
@@ -24,15 +25,15 @@ export const FavoritesMedias: React.FC = () => {
 
   if (!moviesFavorite.length) {
     return (
-      <S.Container>
+      <View style={styles.container}>
         <Header headertitle="Favoritos" />
         <EmptyPage text="Adicione um filme como favorito para ver ele aqui" />
-      </S.Container>
+      </View>
     );
   }
 
   return (
-    <S.Container>
+    <View style={styles.container}>
       <Header headertitle="Favoritos" />
 
       <FlatList
@@ -51,6 +52,6 @@ export const FavoritesMedias: React.FC = () => {
           />
         )}
       />
-    </S.Container>
+    </View>
   );
 };

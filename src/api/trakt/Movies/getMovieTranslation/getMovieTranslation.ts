@@ -1,9 +1,10 @@
 import { axiosTraktClient } from 'src/api/trakt/axios';
-import { TRAKT_URLS } from '../../urls';
+
 import {
   GetMovieTranslationProps,
   TraktMovieTranslation,
 } from './getMovieTranslation.types';
+import { TRAKT_URLS } from '../../urls';
 
 export async function getMovieTranslation({
   id,

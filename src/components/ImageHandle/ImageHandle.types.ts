@@ -1,6 +1,12 @@
 export interface ImageHandleProps {
   imageUri?: string | null;
-  width: string;
-  height: string;
-  borderRadius?: string;
+  width: number;
+  height: number;
+  borderRadius?: number;
 }
+
+export type ImageStyleProps = {
+  width: number;
+  height: number;
+  borderRadius?: number;
+};

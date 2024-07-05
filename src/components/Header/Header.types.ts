@@ -7,3 +7,7 @@ export interface HeaderProps {
   headerCenter?: React.ReactNode;
   isTransparent?: boolean;
 }
+
+export type StylesProps = {
+  isTransparent?: boolean;
+};

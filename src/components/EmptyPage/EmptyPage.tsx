@@ -1,13 +1,13 @@
-import { EmptyPageProps } from './EmptyPage.types';
-import Typography from '../Typography';
+import React from 'react';
+import { View } from 'react-native';
+
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
 import { colors } from 'src/styles/colors';
 
 import { styles } from './EmptyPage.style';
-
-import { View } from 'react-native';
-
-import React from 'react';
+import { EmptyPageProps } from './EmptyPage.types';
+import Typography from '../Typography';
 
 export const EmptyPage: React.FC<EmptyPageProps> = props => {
   return (

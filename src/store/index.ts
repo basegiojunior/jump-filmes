@@ -1,9 +1,10 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import { persistStore, persistReducer } from 'redux-persist';
+import { persistReducer, persistStore } from 'redux-persist';
 import promise from 'redux-promise-middleware';
-import moviesReducer from './Movies/Movies.slice';
+
 import favoritesReducer from './Favorites/Favorites.slice';
+import moviesReducer from './Movies/Movies.slice';
 
 const persistConfig = {
   key: 'root',

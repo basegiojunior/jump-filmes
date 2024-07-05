@@ -1,6 +1,14 @@
-import { useRoute } from '@react-navigation/native';
 import React, { useEffect } from 'react';
-import { ActivityIndicator, Dimensions } from 'react-native';
+import {
+  ActivityIndicator,
+  Dimensions,
+  Pressable,
+  ScrollView,
+  View,
+} from 'react-native';
+
+import { useRoute } from '@react-navigation/native';
+
 import { getMovieTranslation } from 'src/api/trakt/Movies/getMovieTranslation/getMovieTranslation';
 import { getYoutubeThumbnailUrl } from 'src/api/youtube/urls';
 import Header from 'src/components/Header';
@@ -11,7 +19,8 @@ import { useAppNavigation } from 'src/hooks/navigationHooks';
 import { RootRouteProps, RoutesList } from 'src/routes/Routes.types';
 import { colors } from 'src/styles/colors';
 import { Movie, MovieTranslation } from 'src/types/movie';
-import * as S from './MediaDetails.style';
+
+import { styles } from './MediaDetails.style';
 
 function generateLabelInfoText(movie: Movie): string {
   const labelInfoArray = [];
@@ -80,29 +89,29 @@ export const MediaDetails: React.FC = () => {
   }, []);
 
   return (
-    <S.Container>
+    <ScrollView style={styles.container}>
       <Header isTransparent={true} iconLeft="arrow-left" onPressLeft={goBack} />
 
       <ImageHandle
         imageUri={movie?.backdropLink}
-        width={Dimensions.get('window').width + 'px'}
-        height={Dimensions.get('window').width * 0.5 + 'px'}
+        width={Dimensions.get('window').width}
+        height={Dimensions.get('window').width * 0.5}
       />
 
-      <S.MainInfo>
+      <View style={styles.mainInfo}>
         {isLoading ? (
           <ActivityIndicator size="large" color={colors.onBackground} />
         ) : (
           <>
             <Typography variant="h1">{movie?.title}</Typography>
-            <S.Row>
+            <View style={styles.row}>
               <Typography variant="label">{labelInfo}</Typography>
-            </S.Row>
+            </View>
           </>
         )}
-      </S.MainInfo>
+      </View>
 
-      <S.MainInfo>
+      <View style={styles.mainInfo}>
         {isLoading ? (
           <ActivityIndicator size="large" color={colors.onBackground} />
         ) : (
@@ -114,27 +123,28 @@ export const MediaDetails: React.FC = () => {
               variant="text">
               {movie?.overview}
             </Typography>
-            <S.ReadMorePressable
+            <Pressable
+              style={styles.readMorePressable}
               onPress={() => setReadMoreExpanded(!readMoreExpanded)}>
               <Typography color={colors.primaryVariant} bold>
                 {readMoreExpanded ? 'Ver menos' : 'Ver mais'}
               </Typography>
-            </S.ReadMorePressable>
+            </Pressable>
           </>
         )}
-      </S.MainInfo>
+      </View>
 
       {movie.trailer && (
-        <S.MainInfo>
-          <S.LabelContainer>
+        <View style={styles.mainInfo}>
+          <View style={styles.labelContainer}>
             <Typography variant="label">TRAILER</Typography>
-          </S.LabelContainer>
+          </View>
           <YoutubeLink
             youtubeLink={movie.trailer}
             thumbnailUri={getYoutubeThumbnailUrl(movie.trailer)}
           />
-        </S.MainInfo>
+        </View>
       )}
-    </S.Container>
+    </ScrollView>
   );
 };

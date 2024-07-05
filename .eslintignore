@@ -1,0 +1,6 @@
+node_modules/*
+.yarn/*
+android/*
+ios/*
+_tests_/*
+.bundle/*

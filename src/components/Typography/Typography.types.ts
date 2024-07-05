@@ -10,3 +10,10 @@ export interface TypographyProps {
 }
 
 export type Variant = 'text' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'label';
+
+export type StyleProps = {
+  variant: Variant;
+  bold?: boolean;
+  color?: string;
+  textAlign?: any;
+};

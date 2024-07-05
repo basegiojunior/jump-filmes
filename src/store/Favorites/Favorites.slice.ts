@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import {
-  FavoritesState,
   ActionFavorites,
   AddFavoritePayloadAction,
+  FavoritesState,
   RemoveFavoritePayloadAction,
 } from './Favorites.types';
 

@@ -1,9 +1,8 @@
-import { colors } from 'src/styles/colors';
 import { StyleSheet } from 'react-native';
 
-type StylesProps = {
-  isTransparent?: boolean;
-};
+import { colors } from 'src/styles/colors';
+
+import { StylesProps } from './Header.types';
 
 export const stylesCreator = ({ isTransparent }: StylesProps) =>
   StyleSheet.create({

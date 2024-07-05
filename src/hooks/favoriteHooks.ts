@@ -3,6 +3,7 @@ import {
   REMOVE_FAVORITE,
 } from 'src/store/Favorites/Favorites.slice';
 import { Movie } from 'src/types/movie';
+
 import { useAppDispatch, useAppSelector } from './reduxHooks';
 
 export function useFavoriteHooks() {

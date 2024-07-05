@@ -1,25 +1,24 @@
+import { StyleSheet } from 'react-native';
+
 import { colors } from 'src/styles/colors';
-import styled from 'styled-components/native';
 
-export const Container = styled.ScrollView`
-  flex: 1;
-`;
-
-export const MainInfo = styled.View`
-  border-bottom-width: 1px;
-  border-bottom-color: ${colors.outline};
-  padding: 20px;
-`;
-
-export const ReadMorePressable = styled.Pressable`
-  margin-top: 8px;
-`;
-
-export const LabelContainer = styled.View`
-  padding-bottom: 12px;
-  padding-left: 8px;
-`;
-
-export const Row = styled.View`
-  flex-direction: row;
-`;
+export const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  mainInfo: {
+    borderBottomWidth: 1,
+    borderBottomColor: colors.outline,
+    padding: 20,
+  },
+  readMorePressable: {
+    marginTop: 8,
+  },
+  labelContainer: {
+    paddingBottom: 12,
+    paddingLeft: 8,
+  },
+  row: {
+    flexDirection: 'row',
+  },
+});

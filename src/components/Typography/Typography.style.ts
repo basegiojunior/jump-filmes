@@ -1,14 +1,8 @@
-import { colors } from 'src/styles/colors';
-import styled from 'styled-components/native';
-import { Variant } from './Typography.types';
+import { StyleSheet } from 'react-native';
 
-type CustomTextProps = {
-  variant: Variant;
-  test?: string;
-  bold?: boolean;
-  color?: string;
-  textAlign?: string;
-};
+import { colors } from 'src/styles/colors';
+
+import { StyleProps, Variant } from './Typography.types';
 
 const textColorStyle: { [key in Variant]: string } = {
   text: colors.onSurface,
@@ -20,41 +14,43 @@ const textColorStyle: { [key in Variant]: string } = {
   label: colors.onSurfaceVariant,
 };
 
-const textWeightStyle: { [key in Variant]: number } = {
-  text: 400,
-  h1: 600,
-  h2: 600,
-  h3: 600,
-  h4: 600,
-  h5: 600,
-  label: 600,
+const textWeightStyle: { [key in Variant]: any } = {
+  text: '400',
+  h1: '600',
+  h2: '600',
+  h3: '600',
+  h4: '600',
+  h5: '600',
+  label: '600',
 };
 
-const textSizeStyle: { [key in Variant]: string } = {
-  text: '16px',
-  h1: '28px',
-  h2: '26px',
-  h3: '22px',
-  h4: '18px',
-  h5: '16px',
-  label: '13px',
+const textSizeStyle: { [key in Variant]: number } = {
+  text: 16,
+  h1: 28,
+  h2: 26,
+  h3: 22,
+  h4: 18,
+  h5: 16,
+  label: 13,
 };
 
-const lineHeighttyle: { [key in Variant]: string } = {
-  text: '21px',
-  h1: '34px',
-  h2: '29px',
-  h3: '25px',
-  h4: '23px',
-  h5: '21px',
-  label: '13px',
+const lineHeightStyle: { [key in Variant]: number } = {
+  text: 21,
+  h1: 34,
+  h2: 29,
+  h3: 25,
+  h4: 23,
+  h5: 21,
+  label: 13,
 };
 
-export const CustomText = styled.Text<CustomTextProps>`
-  color: ${props => props.color || textColorStyle[props.variant]};
-  font-weight: ${props =>
-    props.bold ? 'bold' : textWeightStyle[props.variant]};
-  line-height: ${props => lineHeighttyle[props.variant]};
-  font-size: ${props => textSizeStyle[props.variant]};
-  text-align: ${props => props.textAlign || 'auto'};
-`;
+export const styleCreator = (props: StyleProps) =>
+  StyleSheet.create({
+    text: {
+      color: props.color ?? textColorStyle[props.variant],
+      fontWeight: props.bold ? 'bold' : textWeightStyle[props.variant],
+      lineHeight: lineHeightStyle[props.variant],
+      fontSize: textSizeStyle[props.variant],
+      textAlign: props.textAlign ?? 'auto',
+    },
+  });

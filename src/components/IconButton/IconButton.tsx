@@ -1,13 +1,18 @@
 import React from 'react';
-import { IconButtonProps } from './IconButton.types';
-import * as S from './IconButton.style';
+import { Pressable, View } from 'react-native';
+
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
 import { colors } from 'src/styles/colors';
+
+import { styles } from './IconButton.style';
+import { IconButtonProps } from './IconButton.types';
 
 export const IconButton: React.FC<IconButtonProps> = props => {
   return (
-    <S.IconPressableContainer>
-      <S.IconPressable
+    <View style={styles.iconPressableContainer}>
+      <Pressable
+        style={styles.iconPressable}
         testID="icon-pressable"
         onPress={props.onPress}
         android_ripple={{ color: colors.ripple }}>
@@ -17,7 +22,7 @@ export const IconButton: React.FC<IconButtonProps> = props => {
           size={22}
           color={colors.onSurface}
         />
-      </S.IconPressable>
-    </S.IconPressableContainer>
+      </Pressable>
+    </View>
   );
 };

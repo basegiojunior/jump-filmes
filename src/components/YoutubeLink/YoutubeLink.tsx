@@ -1,8 +1,10 @@
 import React from 'react';
-import { YoutubeLinkProps } from './YoutubeLink.types';
-import * as S from './YoutubeLink.style';
+import { Image, Linking, Pressable, View } from 'react-native';
+
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { Linking } from 'react-native';
+
+import { styles } from './YoutubeLink.style';
+import { YoutubeLinkProps } from './YoutubeLink.types';
 
 export const YoutubeLink: React.FC<YoutubeLinkProps> = props => {
   function onPressVideo() {
@@ -10,11 +12,11 @@ export const YoutubeLink: React.FC<YoutubeLinkProps> = props => {
   }
 
   return (
-    <S.ContainerPressable onPress={onPressVideo}>
-      <S.PlayIconContainer>
+    <Pressable style={styles.containerPressable} onPress={onPressVideo}>
+      <View style={styles.playIconContainer}>
         <Icon name="youtube" size={60} color={'#ffffff83'} />
-      </S.PlayIconContainer>
-      <S.Image source={{ uri: props.thumbnailUri }} />
-    </S.ContainerPressable>
+      </View>
+      <Image style={styles.image} source={{ uri: props.thumbnailUri }} />
+    </Pressable>
   );
 };

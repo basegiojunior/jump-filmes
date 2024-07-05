@@ -1,23 +1,25 @@
+import { StyleSheet } from 'react-native';
+
 import { colors } from 'src/styles/colors';
-import styled from 'styled-components/native';
 
-export const Container = styled.View`
-  flex-direction: row;
-  align-items: center;
-  padding: 10px 20px;
-  border-bottom-width: 1px;
-  border-bottom-color: ${colors.outline};
-`;
-
-export const ContainerPressable = styled.Pressable`
-  flex-direction: row;
-  align-items: center;
-  flex: 1;
-`;
-
-export const Content = styled.View`
-  flex-direction: column;
-  align-items: flex-start;
-  margin-left: 16px;
-  flex: 1;
-`;
+export const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.outline,
+  },
+  containerPressable: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 1,
+  },
+  content: {
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    marginLeft: 16,
+    flex: 1,
+  },
+});

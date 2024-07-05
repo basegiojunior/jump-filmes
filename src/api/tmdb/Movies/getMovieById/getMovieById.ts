@@ -1,5 +1,7 @@
-import { axiosTmdbClient } from 'src/api/tmdb/axios';
 import { TMDB_3_API_KEY } from 'react-native-dotenv';
+
+import { axiosTmdbClient } from 'src/api/tmdb/axios';
+
 import { GetTmdbMovieByIdProps, TmdbMovieType } from './getMovieById.types';
 import { TMDB_URLS } from '../../urls';
 

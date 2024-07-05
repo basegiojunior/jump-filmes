@@ -1,8 +1,10 @@
 import React from 'react';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
 import MediaDetails from 'src/pages/MediaDetails';
 import MediasList from 'src/pages/MediasList';
+
 import { RoutesList } from './Routes.types';
 
 const Stack = createNativeStackNavigator();

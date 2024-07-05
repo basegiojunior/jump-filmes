@@ -1,9 +1,11 @@
 import React from 'react';
-import IconButton from '../IconButton';
-import Typography from '../Typography';
-import { HeaderProps } from './Header.types';
-import { stylesCreator } from './Header.style';
 import { View } from 'react-native';
+
+import Typography from 'src/components//Typography';
+import IconButton from 'src/components/IconButton';
+
+import { stylesCreator } from './Header.style';
+import { HeaderProps } from './Header.types';
 
 const Header = (props: HeaderProps) => {
   const styles = stylesCreator({ isTransparent: props.isTransparent });

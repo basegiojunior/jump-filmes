@@ -1,7 +1,9 @@
 import 'react-native';
 
 import React from 'react';
+
 import { fireEvent, render, screen } from '@testing-library/react-native';
+
 import IconButton from 'src/components/IconButton';
 
 jest.mock('react-native-vector-icons/MaterialCommunityIcons', () => 'Icon');

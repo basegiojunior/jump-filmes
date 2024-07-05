@@ -8,7 +8,6 @@ Mobile app to search and list movies (tested on Android only)
 <img src="https://user-images.githubusercontent.com/39566485/185141162-cdda8564-0c0d-4aed-9d18-73d4626d3ea6.png" height="400">
 <p>
 
-
 ## Features
 
 - Search movies using Trakt api
@@ -27,7 +26,6 @@ Mobile app to search and list movies (tested on Android only)
 - Axios to requests
 - Jest and React Native Testing Library to the component testing
 - Icons with React Native Vector Icons
-- Styled Components
 
 ## Getting Started
 

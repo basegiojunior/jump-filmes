@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 import { TMDB_BASE_URL } from './urls';
 
 export const axiosTmdbClient = axios.create({
