@@ -8,20 +8,16 @@ export async function searchTraktMovies({
   page = 1,
   limit = 10,
 }: SearchTraktMoviesProps): Promise<Array<TraktMedia>> {
-  try {
-    const response = await axiosTraktClient.get<Array<TraktMedia>>(
-      TRAKT_URLS.SEARCH_MOVIE,
-      {
-        params: {
-          query,
-          page,
-          limit,
-          extended: 'full',
-        },
+  const response = await axiosTraktClient.get<Array<TraktMedia>>(
+    TRAKT_URLS.SEARCH_MOVIE,
+    {
+      params: {
+        query,
+        page,
+        limit,
+        extended: 'full',
       },
-    );
-    return response.data;
-  } catch (error) {
-    throw new Error(`Searching Trakt movies: ${error}`);
-  }
+    },
+  );
+  return response.data;
 }

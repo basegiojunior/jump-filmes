@@ -75,8 +75,6 @@ export const MediaDetails: React.FC = () => {
           setMovieTranslation(response[0] as MovieTranslation);
         }
       }
-    } catch (error) {
-      throw error;
     } finally {
       setIsLoading(false);
     }

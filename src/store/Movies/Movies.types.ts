@@ -6,6 +6,7 @@ export type MoviesState = {
   movies: Array<Movie>;
   page: number;
   finishedPages: boolean;
+  errorOnSearchMovies: boolean;
 };
 
 export enum ActionMovies {
@@ -24,21 +25,13 @@ export type SearchMoviesProps = {
   query: string;
   page?: number;
 };
-export type SearchFulfilledPayloadAction = Array<Media>;
-export type SearchMoviesReturn = {
-  type: ActionMovies.SEARCH;
-  payload: () => Promise<SearchFulfilledPayloadAction>;
-};
+export type SearchMoviesReturn = Array<Media>;
 
 export type GetImagesProps = {
   tmdbId: number;
 };
-export type GetImagesFulfilledPayloadAction = {
+export type GetImagesReturn = {
   tmdbId: number;
   posterLink: string;
   backdropLink?: string | null;
-};
-export type GetImagesReturn = {
-  type: ActionMovies.GET_IMAGES;
-  payload: () => Promise<GetImagesFulfilledPayloadAction>;
 };

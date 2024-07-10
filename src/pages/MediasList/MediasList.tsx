@@ -7,7 +7,8 @@ import { useFavoriteHooks } from 'src/hooks/favoriteHooks';
 import { useAppNavigation } from 'src/hooks/navigationHooks';
 import { useAppDispatch, useAppSelector } from 'src/hooks/reduxHooks';
 import { RoutesList } from 'src/routes/Routes.types';
-import { GET_IMAGES, RESET_LIST, SEARCH } from 'src/store/Movies/Movies.slice';
+import { resetMoviesList } from 'src/store/Movies/Movies.slice';
+import { getMovieImage, searchMovies } from 'src/store/Movies/Movies.thunk';
 import { colors } from 'src/styles/colors';
 import { Movie } from 'src/types/movie';
 
@@ -32,13 +33,13 @@ export const MediasList: React.FC = () => {
   const inputRef = React.useRef<TextInput>(null);
 
   function onSearch() {
-    dispatch(RESET_LIST());
-    dispatch(SEARCH({ query: search }));
+    dispatch(resetMoviesList());
+    dispatch(searchMovies({ query: search }));
   }
 
   function onEndReached() {
     if (!finishedPages) {
-      dispatch(SEARCH({ query: search, page: page + 1 }));
+      dispatch(searchMovies({ query: search, page: page + 1 }));
     }
   }
 
@@ -56,14 +57,14 @@ export const MediasList: React.FC = () => {
 
   useEffect(() => {
     if (!movies.length) {
-      dispatch(SEARCH({ query: '' }));
+      dispatch(searchMovies({ query: '' }));
     }
   }, []);
 
   useEffect(() => {
     movies.forEach(movie => {
       if (movie.ids.tmdb && !movie.posterLink) {
-        dispatch(GET_IMAGES({ tmdbId: movie.ids.tmdb }));
+        dispatch(getMovieImage({ tmdbId: movie.ids.tmdb }));
       }
     });
   }, [movies.length]);
