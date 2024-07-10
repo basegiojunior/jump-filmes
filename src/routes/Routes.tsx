@@ -25,39 +25,30 @@ const MainRoutes = () => {
       <Tab.Navigator>
         <Tab.Screen
           name="Filmes"
-          options={{
-            headerShown: false,
-            tabBarStyle: { backgroundColor: colors.surfaceVariant },
-            tabBarShowLabel: false,
-            tabBarIcon: props => (
-              <Icon
-                size={props.size}
-                color={props.focused ? colors.primary : colors.onSurface}
-                name="filmstrip-box-multiple"
-              />
-            ),
-          }}>
+          options={tabScreenOptions('filmstrip-box-multiple')}>
           {MoviesStack}
         </Tab.Screen>
-        <Tab.Screen
-          name="Favoritos"
-          options={{
-            headerShown: false,
-            tabBarStyle: { backgroundColor: colors.surfaceVariant },
-            tabBarShowLabel: false,
-            tabBarIcon: props => (
-              <Icon
-                size={props.size}
-                color={props.focused ? colors.primary : colors.onSurface}
-                name="star"
-              />
-            ),
-          }}>
+        <Tab.Screen name="Favoritos" options={tabScreenOptions('star')}>
           {FavoritesStack}
         </Tab.Screen>
       </Tab.Navigator>
     </NavigationContainer>
   );
+};
+
+const tabScreenOptions = (iconName: string) => {
+  return {
+    headerShown: false,
+    tabBarStyle: { backgroundColor: colors.surfaceVariant },
+    tabBarShowLabel: false,
+    tabBarIcon: (props: { size: number; focused: boolean }) => (
+      <Icon
+        size={props.size}
+        color={props.focused ? colors.primary : colors.onSurface}
+        name={iconName}
+      />
+    ),
+  };
 };
 
 export default MainRoutes;

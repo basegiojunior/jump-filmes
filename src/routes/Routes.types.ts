@@ -1,4 +1,4 @@
-import { RouteProp } from '@react-navigation/native';
+import { RouteProp, TypedNavigator } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import { Movie } from 'src/types/movie';
