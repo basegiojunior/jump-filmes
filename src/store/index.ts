@@ -1,7 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { persistReducer, persistStore } from 'redux-persist';
-import promise from 'redux-promise-middleware';
 
 import favoritesReducer from './Favorites/Favorites.slice';
 import moviesReducer from './Movies/Movies.slice';
@@ -21,7 +20,7 @@ const store = configureStore({
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: false,
-    }).prepend(promise),
+    }),
 });
 
 export const persistor = persistStore(store);

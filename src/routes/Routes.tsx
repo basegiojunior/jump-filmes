@@ -25,10 +25,12 @@ const MainRoutes = () => {
       <Tab.Navigator>
         <Tab.Screen
           name="Filmes"
-          options={tabScreenOptions('filmstrip-box-multiple')}>
+          options={tabScreenOptions({ iconName: 'filmstrip-box-multiple' })}>
           {MoviesStack}
         </Tab.Screen>
-        <Tab.Screen name="Favoritos" options={tabScreenOptions('star')}>
+        <Tab.Screen
+          name="Favoritos"
+          options={tabScreenOptions({ iconName: 'star' })}>
           {FavoritesStack}
         </Tab.Screen>
       </Tab.Navigator>
@@ -36,7 +38,7 @@ const MainRoutes = () => {
   );
 };
 
-const tabScreenOptions = (iconName: string) => {
+const tabScreenOptions = ({ iconName }: { iconName: string }) => {
   return {
     headerShown: false,
     tabBarStyle: { backgroundColor: colors.surfaceVariant },

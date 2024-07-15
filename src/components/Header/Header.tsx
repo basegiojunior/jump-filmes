@@ -17,10 +17,8 @@ const Header = (props: HeaderProps) => {
       )}
 
       <View style={styles.centerContainer}>
-        {props.headertitle ? (
+        {props.headerCenter ?? (
           <Typography variant="h4">{props.headertitle}</Typography>
-        ) : (
-          props.headerCenter
         )}
       </View>
 
